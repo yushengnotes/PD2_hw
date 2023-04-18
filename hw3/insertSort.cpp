@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
+#include <string>
 #include "Employee.h"
 using namespace std;
 
