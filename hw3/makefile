@@ -2,7 +2,7 @@
 CC = g++
 CFLAGS = -Wall
 exe = hw3
-obj = main.o Employee.o insertSort.o parseCSV.o tmFormat.o 
+obj = main.o Employee.o insertSort.o parseCSV.o tmFormat.o createAttend.o 
 
 all: main
 
