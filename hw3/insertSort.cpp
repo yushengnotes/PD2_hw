@@ -12,6 +12,8 @@ using namespace std;
 
 // 呼叫用來對vector做time formatting的副程式
 void tmFormat(vector<Employee> &emp);
+// 呼叫用來對vector做time formatting的副程式，將秒轉為年月日
+void timeFormat(vector<Employee> &emp);
 
 void insertSort(vector<Employee> &v) {
     int insertId, insertTm, moveItem;
@@ -27,7 +29,7 @@ void insertSort(vector<Employee> &v) {
         }
         v.at(moveItem) = insert;
     }
-    cout << "sorting success" << endl;
+    cout << "Sorting id success" << endl;
 
     // 列印出物件emp的成員變數
     for (int i = 0; i < v.size(); ++i) {
@@ -47,7 +49,8 @@ void insertSort(vector<Employee> &v) {
         }
         v.at(moveItem) = insert;
     }
-    cout << "sorting success" << endl;
-
+    cout << "Sorting time success" << endl;
+    // 呼叫用來對vector做time formatting的副程式，將秒轉為年月日
+    timeFormat(v); 
 }
 

@@ -17,13 +17,16 @@ class Employee {
         std::string getSignType() const { return signType; }
         std::string getTime() const { return time; }
         int getFtime() const { return ftime; }
+        std::string getFormatTime() const { return FormatTime; }
         void setFtime(int ftime);
+        void setFormatTime(std::string time);
 
     private:
         int id;
         std::string signType;
         std::string time; // unformatted time
-        int ftime; // formatted time
+        int ftime; // formatted time 秒
+        std::string FormatTime; // formatted time 年月日
 };
 
 #endif

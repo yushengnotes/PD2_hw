@@ -6,23 +6,22 @@
 #ifndef ATTENDANCE_H
 #define ATTENDANCE_H
 #include <string>
+#include <vector>
 #include "Record.h"
 
 class Attendance {
     public:
         // 建構式
-        Attendance(int conWorkday, std::string &startDay, std::string &endDay):
-            conWorkday(conWorkday), startDay(startDay), endDay(endDay) {}
-        
         Attendance(int id): id(id) {}
 
         // 成員函式
         int getId() const { return id; }
         void setRecord(int conWorkday, std::string &startDay, std::string &endDay);
+        void getRecord();
 
     private:
         int id;
-        vector<Record> conDayRecord;
+        std::vector<Record> conDayRecord;
 };
 
 #endif

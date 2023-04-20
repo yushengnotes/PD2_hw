@@ -20,5 +20,5 @@ void tmFormat(vector<Employee> &emp) {
         time_t time_value = mktime(&time_struct);
         emp[i].setFtime(time_value); // 將轉為秒的時間存入emp
     }
-    cout << "time formatted" << endl;
+    cout << "Time formatted, convert to seconds" << endl;
 }
