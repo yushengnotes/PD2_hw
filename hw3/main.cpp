@@ -23,6 +23,10 @@ void createAttend(vector<Employee> &employees, vector<Attendance> &attendances);
 void calConWorkday(vector<Employee> &employees, vector<Attendance> &attendances);
 // 宣告用來排序attendances的副程式
 void sortAttendances(vector<Attendance> &v);
+// 宣告用來賦值到results的副程式
+void createResults(vector<Attendance> &attendances, vector<Attendance> &results);
+// 宣告用來排序results的副程式
+void sortResults(vector<Attendance> &v);
 
 int main(int argc, char *argv[]) {
     // 宣告用以儲存原始的csv檔employee資料的vector
@@ -30,6 +34,8 @@ int main(int argc, char *argv[]) {
     // 宣告用以儲存整理過的employee資料，並以id為物件以Attendance為類別
     // 的vector
     vector<Attendance> attendances; 
+    // 宣告用來儲存每個員工連續工作最多天的那一筆紀錄
+    vector<Attendance> results; 
 
     parseCSV(argv[1], employees); // 呼叫用來開啟csv檔案的副程式
     sortEmployees(employees); // 呼叫用來排序employees的副程式
@@ -51,10 +57,30 @@ int main(int argc, char *argv[]) {
         attendances[i].printRecord();
     }
 
+    // 呼叫用來創建results的副程式，此時results裡的各值的成員變數為空
+    createAttend(employees, results);
+
+    // 呼叫用來賦值給results的副程式
+    createResults(attendances, results);
+
+    for (int i = 0; i < results.size(); ++i) {
+        cout << results[i].getId() << ",";
+        results[i].printRecord();
+    }
+
+    // 呼叫用來排序results的副程式，conWorkDay越大越往前擺
+    sortResults(results);
+
+    for (int i = 0; i < results.size(); ++i) {
+        cout << results[i].getId() << ",";
+        results[i].printRecord();
+    }
+
     // 以下函式還未寫
+
     // 列印出前三名最長連續工作天的員工的副程式，每行格式為
     // 例: 1023, 100, 20230102, 20230310
-    // printOut(attendances); 
+    // printOut(results); 
 
     return 0;
 }
