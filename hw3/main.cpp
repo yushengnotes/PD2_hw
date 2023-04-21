@@ -16,11 +16,13 @@ using namespace std;
 // 宣告用來開啟csv檔案的副程式
 void parseCSV(char* &filename, vector<Employee> &employees); 
 // 宣告用來排序employees的副程式
-void insertSort(vector<Employee> &v);
+void sortEmployees(vector<Employee> &v);
 // 宣告用來創建attendances的副程式
 void createAttend(vector<Employee> &employees, vector<Attendance> &attendances);
 // 宣告用來計算conWorkday的副程式
 void calConWorkday(vector<Employee> &employees, vector<Attendance> &attendances);
+// 宣告用來排序attendances的副程式
+void sortAttendances(vector<Attendance> &v);
 
 int main(int argc, char *argv[]) {
     // 宣告用以儲存原始的csv檔employee資料的vector
@@ -30,7 +32,7 @@ int main(int argc, char *argv[]) {
     vector<Attendance> attendances; 
 
     parseCSV(argv[1], employees); // 呼叫用來開啟csv檔案的副程式
-    insertSort(employees); // 呼叫用來排序vector的副程式
+    sortEmployees(employees); // 呼叫用來排序employees的副程式
 
     for (int i = 0; i < employees.size(); ++i) {
         cout << employees[i].getId() << ',' << employees[i].getSignType() << ',' << employees[i].getFormatTime() << endl;
@@ -42,14 +44,14 @@ int main(int argc, char *argv[]) {
     // 呼叫用來計算連續工作天並找出開始與結束日期的副程式
     calConWorkday(employees, attendances);
 
+    sortAttendances(attendances); // 呼叫用來排序attendances的副程式
+
     for (int i = 0; i < attendances.size(); ++i) {
         cout << attendances[i].getId() << ",";
-        attendances[i].getRecord();
+        attendances[i].printRecord();
     }
 
     // 以下函式還未寫
-
-    // selectSort(attendances); // 呼叫用來排序attendances的副程式
     // 列印出前三名最長連續工作天的員工的副程式，每行格式為
     // 例: 1023, 100, 20230102, 20230310
     // printOut(attendances); 

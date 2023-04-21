@@ -15,7 +15,7 @@ void tmFormat(vector<Employee> &emp);
 // 呼叫用來對vector做time formatting的副程式，將秒轉為年月日
 void timeFormat(vector<Employee> &emp);
 
-void insertSort(vector<Employee> &v) {
+void sortEmployees(vector<Employee> &v) {
     int insertId, insertTm, moveItem;
 
     // 用以排序employees的id，並以insertion sort來實作

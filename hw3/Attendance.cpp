@@ -11,7 +11,7 @@ void Attendance::setRecord(int conWorkday, std::string &startDay, std::string &e
     conDayRecord.push_back(record);
 }
 
-void Attendance::getRecord() {
+void Attendance::printRecord() {
     for (int i = 0; i < conDayRecord.size(); i++) {
         cout << conDayRecord[i].getConWorkday() << "," << conDayRecord[i].getStartDay() << "," << conDayRecord[i].getEndDay() << endl;
     }

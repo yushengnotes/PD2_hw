@@ -17,8 +17,8 @@ class Attendance {
         // 成員函式
         int getId() const { return id; }
         void setRecord(int conWorkday, std::string &startDay, std::string &endDay);
-        void getRecord();
-
+        void printRecord();
+        std::vector<Record>& getRecord() { return conDayRecord; }
     private:
         int id;
         std::vector<Record> conDayRecord;
