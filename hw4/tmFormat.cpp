@@ -1,6 +1,6 @@
-/*  鄒雨笙 F64081070 程式設計二 第3次作業 2023/4/11
-    
-   此副程式tmFormat()用來對vector做time formatting
+/*  鄒雨笙 F64081070 程式設計二 第4次作業 2023/4/26
+
+    此副程式tmFormat()用來對vector做time formatting
 */
 
 #include <iostream>
