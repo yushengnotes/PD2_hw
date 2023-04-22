@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
     parseCSV(argv[1], employees); // 呼叫用來開啟csv檔案的副程式
     sortEmployees(employees); // 呼叫用來排序employees的副程式
 
-    for (int i = 0; i < employees.size(); ++i) {
-        cout << employees[i].getId() << ',' << employees[i].getSignType() << ',' << employees[i].getFormatTime() << endl;
-    }
+    // for (int i = 0; i < employees.size(); ++i) {
+    //     cout << employees[i].getId() << ',' << employees[i].getSignType() << ',' << employees[i].getFormatTime() << endl;
+    // }
 
     // 呼叫用來創建attendances的副程式
     createAttend(employees, attendances);
@@ -54,10 +54,10 @@ int main(int argc, char *argv[]) {
 
     sortAttendances(attendances); // 呼叫用來排序attendances的副程式
 
-    for (int i = 0; i < attendances.size(); ++i) {
-        cout << attendances[i].getId() << ",";
-        attendances[i].printRecord();
-    }
+    // for (int i = 0; i < attendances.size(); ++i) {
+    //     cout << attendances[i].getId() << ",";
+    //     attendances[i].printRecord();
+    // }
 
     // 呼叫用來創建results的副程式，此時results裡的各值的成員變數為空
     createAttend(employees, results);
@@ -65,18 +65,18 @@ int main(int argc, char *argv[]) {
     // 呼叫用來賦值給results的副程式
     createResults(attendances, results);
 
-    for (int i = 0; i < results.size(); ++i) {
-        cout << results[i].getId() << ",";
-        results[i].printRecord();
-    }
+    // for (int i = 0; i < results.size(); ++i) {
+    //     cout << results[i].getId() << ",";
+    //     results[i].printRecord();
+    // }
 
     // 呼叫用來排序results的副程式，conWorkDay越大越往前擺
     sortResults(results);
 
-    for (int i = 0; i < results.size(); ++i) {
-        cout << results[i].getId() << ",";
-        results[i].printRecord();
-    }
+    // for (int i = 0; i < results.size(); ++i) {
+    //     cout << results[i].getId() << ",";
+    //     results[i].printRecord();
+    // }
 
     // 呼叫用來Time formatting results的副程式
     formatResults(results);
@@ -90,6 +90,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
-
 

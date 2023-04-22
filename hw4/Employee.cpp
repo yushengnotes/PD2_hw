@@ -11,3 +11,5 @@ void Employee::setFtime(int time) {
 void Employee::setFormatTime(std::string time) {
     FormatTime = time;
 }
+
+

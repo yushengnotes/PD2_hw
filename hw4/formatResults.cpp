@@ -29,7 +29,7 @@ string timeFormatting(string &date) {
 
 // 宣告用來Time formatting results的副程式
 void formatResults(vector<Attendance> &v) {
-    for (int i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         string startDay, endDay; // 未格式化的日期變數
         string startDate, endDate; // 已格式化的日期變數
         string date1, date2;
@@ -47,5 +47,8 @@ void formatResults(vector<Attendance> &v) {
         // 匯入最後results要使用的格式
         (v[i].getRecord())[0].setFormatRecord(startDate, endDate);
         }
-    cout << "Formatting results success!!!" << endl;
+    // cout << "Formatting results success!!!" << endl;
 }
+
+
+

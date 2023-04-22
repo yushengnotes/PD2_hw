@@ -13,7 +13,7 @@ void sortResults(vector<Attendance> &v) {
     int insertDay, moveItem;
 
     // 用以排序results，並以insertion sort來實作
-    for (int next = 1; next < v.size(); ++next) {
+    for (size_t next = 1; next < v.size(); ++next) {
         insertDay = (v[next].getRecord())[0].getConWorkday();
         Attendance insert = v[next];
         moveItem = next;
@@ -23,7 +23,7 @@ void sortResults(vector<Attendance> &v) {
         }
         v[moveItem] = insert;
     }
-    cout << "Sorting results success" << endl;
+    // cout << "Sorting results success" << endl;
 
 
 }

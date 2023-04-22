@@ -16,3 +16,4 @@ main: $(obj)
 .PHONY: claen
 clean:
 	rm -f $(obj)
+

@@ -15,7 +15,7 @@ bool compareDay(const string &time, const string &time_next);
 bool compareYearMonth(const string &time, const string &time_next);
     
 void calConWorkday(vector<Employee> &employees, vector<Attendance> &attendances) {
-    int i = 0, j = 0;
+    size_t i = 0, j = 0;
     int id;
     int day = 0;
     string startDay;
@@ -37,7 +37,7 @@ void calConWorkday(vector<Employee> &employees, vector<Attendance> &attendances)
                 endDay = employees[i].getFormatTime();
                 id = employees[i].getId();
                 day = day + 1;
-                for (int i = 0; i < attendances.size(); i++) {
+                for (size_t i = 0; i < attendances.size(); i++) {
                     if (id == attendances[i].getId()) {
                         attendances[i].setRecord(day, startDay, endDay);
                         break;
@@ -52,7 +52,7 @@ void calConWorkday(vector<Employee> &employees, vector<Attendance> &attendances)
         endDay = employees[i].getFormatTime();
         id = employees[i].getId();
         day = day + 1;
-        for (int i = 0; i < attendances.size(); i++) {
+        for (size_t i = 0; i < attendances.size(); i++) {
             if (id == attendances[i].getId()) {
                 attendances[i].setRecord(day, startDay, endDay);
                 break;
@@ -63,4 +63,6 @@ void calConWorkday(vector<Employee> &employees, vector<Attendance> &attendances)
         j = 0;
     }
 }
+
+
 

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <vector>
 #include "Employee.h"
 using namespace std;
 
@@ -19,11 +20,11 @@ string secondsToYearMonthDay(time_t seconds) {
 
 // 將轉為年月日的時間存入emp
 void timeFormat(vector<Employee> &emp) {
-    for (int i = 0; i < emp.size(); i++) {
+    for (size_t i = 0; i < emp.size(); i++) {
         string formatTime;
         formatTime = secondsToYearMonthDay(emp[i].getFtime());
         emp[i].setFormatTime(formatTime); 
     }
-    cout << "Time formatted, convert back to Y-M-D H:M" << endl;
+    // cout << "Time formatted, convert back to Y-M-D H:M" << endl;
 }
 

@@ -8,13 +8,14 @@
 #include <sstream>
 #include <ctime>
 #include <iomanip>
+#include <vector>
 #include "Employee.h"
 using namespace std;
 
 
 // 將年月日轉為秒
 void tmFormat(vector<Employee> &emp) {
-    for (int i = 0; i < emp.size(); i++) {
+    for (size_t i = 0; i < emp.size(); i++) {
         string time = emp[i].getTime();
         tm time_struct = {};
         istringstream ss(time);
@@ -22,6 +23,6 @@ void tmFormat(vector<Employee> &emp) {
         time_t time_value = mktime(&time_struct);
         emp[i].setFtime(time_value); // 將轉為秒的時間存入emp
     }
-    cout << "time formatted, convert to seconds" << endl;
+    // cout << "time formatted, convert to seconds" << endl;
 }
 

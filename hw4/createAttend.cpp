@@ -11,7 +11,7 @@
 using namespace std;
 
 void createAttend(vector<Employee> &employees, vector<Attendance> &attendances) {
-    int i = 0;
+    size_t i = 0;
     while (i < employees.size()) {
         int id;
         id = employees[i].getId();
@@ -24,8 +24,10 @@ void createAttend(vector<Employee> &employees, vector<Attendance> &attendances) 
         i++;
     }
 
-    cout << "Create attendances success!!!" << endl;
-    for (int i = 0; i < attendances.size(); ++i) {
-        cout << attendances[i].getId()  << endl;
-    }
+    // cout << "Create attendances success!!!" << endl;
+    // for (size_t i = 0; i < attendances.size(); ++i) {
+    //     cout << attendances[i].getId()  << endl;
+    // }
 }
+
+

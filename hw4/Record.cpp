@@ -12,3 +12,4 @@ void Record::setFormatRecord(std::string &startDate, std::string &endDate) {
     endDay = endDate;
 
 }
+

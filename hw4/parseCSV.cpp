@@ -42,6 +42,8 @@ void parseCSV(char* &filename, vector<Employee> &employees) {
     
 
     
-    cout << "Read csv file success" << endl;
+    // cout << "Read csv file success" << endl;
 
 }
+
+

@@ -14,8 +14,8 @@ void sortAttendances(vector<Attendance> &v) {
     int insertDay, moveItem;
 
     // 用以排序conDayRecord，並以insertion sort來實作
-    for (int i = 0; i < v.size(); ++i) {
-        for (int next = 1; next < v[i].getRecord().size(); ++next) {
+    for (size_t i = 0; i < v.size(); ++i) {
+        for (size_t next = 1; next < v[i].getRecord().size(); ++next) {
             insertDay = (v[i].getRecord())[next].getConWorkday();
             Record insert = (v[i].getRecord())[next];
             moveItem = next;
@@ -26,7 +26,7 @@ void sortAttendances(vector<Attendance> &v) {
             (v[i].getRecord())[moveItem] = insert;
         }
     }
-    cout << "Sorting conWorkDay success" << endl;
+    // cout << "Sorting conWorkDay success" << endl;
 
 
 }
