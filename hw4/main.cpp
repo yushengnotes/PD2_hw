@@ -54,10 +54,10 @@ int main(int argc, char *argv[]) {
 
     sortAttendances(attendances); // 呼叫用來排序attendances的副程式
 
-    for (int i = 0; i < attendances.size(); ++i) {
-        cout << attendances[i].getId() << ",";
-        attendances[i].printRecord();
-    }
+    // for (int i = 0; i < attendances.size(); ++i) {
+    //     cout << attendances[i].getId() << ",";
+    //     attendances[i].printRecord();
+    // }
 
     // 呼叫用來創建results的副程式，此時results裡的各值的成員變數為空
     createAttend(employees, results);

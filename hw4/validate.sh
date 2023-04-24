@@ -1,3 +1,4 @@
+
 rm -r result answer 
 mkdir answer result 
 cp /home/share/hw4/* answer/ 

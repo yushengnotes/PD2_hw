@@ -10,6 +10,7 @@
 #include <ctime>
 #include <iomanip>
 #include "Attendance.h"
+#include "Record.h"
 using namespace std;
 
 time_t startDayFormat(const string &time);
@@ -24,38 +25,32 @@ time_t startDayFormat(const string &time) {
     // cout << "time formatted, convert to seconds" << endl;
 }
 
-void sortAttendances(vector<Attendance> &v) {
-    int insertDay, moveItem;
+// 比較conWorkday大小 
+bool compareDay(const Record &a, const Record &b) {
+    return a.getConWorkday() > b.getConWorkday();
+}
 
-    // 用以排序conDayRecord，並以insertion sort來實作
+// 比較startDay大小 
+bool compareStartDay(const Record &a, const Record &b) {
+    if (a.getConWorkday() == b.getConWorkday()) {
+        return a.getStartDay() > b.getStartDay();
+    }
+    return a.getConWorkday() > b.getConWorkday();
+}
+
+void sortAttendances(vector<Attendance> &v) {
+
+    // 用以排序conDayRecord，並以quick sort來實作
     for (size_t i = 0; i < v.size(); ++i) {
-        for (size_t next = 1; next < v[i].getRecord().size(); ++next) {
-            insertDay = (v[i].getRecord())[next].getConWorkday();
-            Record insert = (v[i].getRecord())[next];
-            moveItem = next;
-            while (moveItem > 0 && (v[i].getRecord())[moveItem-1].getConWorkday() < insertDay) {
-                (v[i].getRecord())[moveItem] = (v[i].getRecord())[moveItem-1];
-                --moveItem;
-            }
-            (v[i].getRecord())[moveItem] = insert;
-        }
+        sort(v[i].getRecord().begin(), v[i].getRecord().end(), compareDay);
     }
     // cout << "Sorting conWorkDay success" << endl;
 
-    // 用以排序startDay，並以insertion sort來實作
+    // 用以排序startDay，並以quick sort來實作
     for (size_t i = 0; i < v.size(); ++i) {
-        for (size_t next = 1; next < v[i].getRecord().size(); ++next) {
-            insertDay = startDayFormat((v[i].getRecord())[next].getStartDay());
-            Record insert = (v[i].getRecord())[next];
-            moveItem = next;
-            while (moveItem > 0 && startDayFormat((v[i].getRecord())[moveItem-1].getStartDay()) < insertDay && v[i].getRecord()[moveItem-1].getConWorkday() == v[i].getRecord()[moveItem].getConWorkday()) {
-                (v[i].getRecord())[moveItem] = (v[i].getRecord())[moveItem-1];
-                --moveItem;
-            }
-            (v[i].getRecord())[moveItem] = insert;
-        }
+        sort(v[i].getRecord().begin(), v[i].getRecord().end(), compareStartDay);
     }
-    cout << "Sorting startDay success" << endl;
+    // cout << "Sorting startDay success" << endl;
 }
 
 
