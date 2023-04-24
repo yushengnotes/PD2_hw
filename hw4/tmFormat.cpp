@@ -13,7 +13,7 @@
 using namespace std;
 
 
-// 將年月日轉為秒
+// 將employees的年月日轉為秒
 void tmFormat(vector<Employee> &emp) {
     for (size_t i = 0; i < emp.size(); i++) {
         string time = emp[i].getTime();
@@ -25,4 +25,5 @@ void tmFormat(vector<Employee> &emp) {
     }
     // cout << "time formatted, convert to seconds" << endl;
 }
+
 
