@@ -32,8 +32,8 @@ void formatResults(vector<Attendance> &v);
 int main(int argc, char *argv[]) {
     // 宣告用以儲存原始的csv檔employee資料的vector
     vector<Employee> employees; 
-    // 宣告用以儲存整理過的employee資料，並以id為物件以Attendance為類別
-    // 的vector
+    // 宣告用以儲存整理過的employee資料，並以attendances為物件以
+    // Attendance為類別的vector
     vector<Attendance> attendances; 
     // 宣告用來儲存每個員工連續工作最多天的那一筆紀錄
     vector<Attendance> results; 
