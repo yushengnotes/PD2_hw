@@ -5,13 +5,14 @@
     
 */
 
-
 #include <string>
 #include "TrieNode.h"
 
-bool search(TrieNode* root, std::string word) {
+using namespace std;
+
+bool search(TrieNode* root, string word) {
     transform(word.begin(), word.end(), word.begin(),
-        [](unsigned char c){ return std::tolower(c); });
+        [](unsigned char c){ return tolower(c); });
     
     TrieNode* node = root;
     for (char ch : word) {

@@ -29,7 +29,7 @@ void parseQuery(char* &query, map<int, vector<string> > &q) {
         istringstream ss(line); // 將ss綁定至讀取行
         vector<string> fields;
         // 將每一行的單字取出
-        while (getline(ss, field, ',')) { 
+        while (getline(ss, field, ' ')) { 
             fields.push_back(field);
         }
         q.insert({key, fields});
