@@ -10,10 +10,9 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <cassert>
 using namespace std;
 
-void parseText(char* &corpus, char* &query, map<int, vector<string> > &c, map<int, vector<string> > &q) { 
+void parseCorpus(char* &corpus, map<int, vector<string> > &c) { 
     // 宣告一個ifstream型別的物件infile
     ifstream infile;
     // 開啟當前目錄下名為corpus的檔案
@@ -58,7 +57,7 @@ void parseText(char* &corpus, char* &query, map<int, vector<string> > &c, map<in
         cout << "\n";
     }
 
-    cout << "Read txt file success" << endl;
+    cout << "Read corpus.txt success" << endl;
 }
 
 
