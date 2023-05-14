@@ -23,6 +23,8 @@ void buildCorpusTrie(map<int, vector<string> > &corpus, map<int,  TrieNode*> &co
 void printTrie(TrieNode* root, string str = "");
 // 宣告用來search corpus的副程式
 void searchCorpus(map<int,  TrieNode*> &corpusTrie, map<int, vector<string> > &query, map<int,  map<int, vector<bool> > > &results);
+// 宣告用來整理results的副程式
+void setResults(map<int, map<int, vector<bool> > > &results, vector<int> &processedResults);
 
 int main(int argc, char *argv[]) {
     // 宣告用以儲存原始的txt檔corpus資料的vector
@@ -31,7 +33,7 @@ int main(int argc, char *argv[]) {
     map<int, vector<string> > query; 
     // 宣告用來儲存Trie的map
     map<int, TrieNode*> corpusTrie; 
-    // 宣告用來儲存每行搜尋結果的vector
+    // 宣告用來儲存未經整理過的每行搜尋結果的map
     map<int, map<int, vector<bool> > > results;
 
     // 呼叫用來讀取corpus.txt檔案的副程式
@@ -42,6 +44,7 @@ int main(int argc, char *argv[]) {
     // 呼叫用來創建corpusTrie的副程式
     buildCorpusTrie(corpus, corpusTrie);
 
+    // check the words stored in the Trie
     for (auto it = corpusTrie.begin(); it != corpusTrie.end(); ++it) {
         cout << "Printing Trie for index " << it->first << ":" << endl;
         printTrie(it->second);
@@ -50,25 +53,11 @@ int main(int argc, char *argv[]) {
     // 呼叫用來search corpus的副程式
     searchCorpus(corpusTrie, query, results);
 
+    // 呼叫用來整理results的副程式
+    // setResults(results, processedResults);
     
-    // for (const auto &query : results) {
-    // cout << "Query " << query.first << ":\n";
-    // for (const auto &corpus : query.second) {
-    //     cout << "Corpus " << corpus.first << ": ";
-    //     for (bool value : corpus.second) {
-    //         cout << (value ? "true" : "false") << " ";
-    //     }
-    //     cout << "\n";
-    // }
-    // }   
-
-
     // 以下函式未定義
+    // printResults(processedResults);
 
-    // printResults();
-    
-
-    // cout << (search(root, "hello") ? "Found" : "Not Found") << endl;
-    // cout << (search(root, "Time") ? "Found" : "Not Found") << endl;
     return 0;
 }
