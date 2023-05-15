@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 #include <unordered_map>
 #include <algorithm>
 #include <cctype>
@@ -49,10 +50,10 @@ int main(int argc, char *argv[]) {
     buildCorpusTrie(corpus, corpusTrie);
 
     // check the words stored in the Trie
-    // for (auto it = corpusTrie.begin(); it != corpusTrie.end(); ++it) {
-    //     cout << "Printing Trie for index " << it->first << ":" << endl;
-    //     printTrie(it->second);
-    // }
+    for (auto it = corpusTrie.begin(); it != corpusTrie.end(); ++it) {
+        cout << "Printing Trie for index " << it->first << ":" << endl;
+        printTrie(it->second);
+    }
 
     // 呼叫用來search corpus的副程式
     searchCorpus(corpusTrie, query, results);

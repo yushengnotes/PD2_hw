@@ -16,7 +16,7 @@ void setResults(map<int, map<int, vector<bool> > > &results, map<int, vector<int
     for (auto it = results.begin(); it != results.end(); ++it) {
         vector<int> resultsList;
         for (auto it_map = (it->second).begin(); it_map != (it->second).end(); ++it_map) {
-            // cout << "Processing query " << it->first << ", corpus " << it_map->first << ", first result " << (it_map->second).at(0) << "\n";
+            cout << "Processing query " << it->first << ", corpus " << it_map->first << ", first result " << (it_map->second).at(0) << "\n";
             if ( (it_map->second).at(0) == true ) {
                 resultsList.push_back(it_map->first);
             }

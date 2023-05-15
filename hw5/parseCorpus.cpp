@@ -10,12 +10,23 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
+// Function to process the word
+string processWord(string word) {
+    word.erase(remove(word.begin(), word.end(), '-'), word.end());
+    word.erase(remove(word.begin(), word.end(), '('), word.end());
+    word.erase(remove(word.begin(), word.end(), ')'), word.end());
+    word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
+    transform(word.begin(), word.end(), word.begin(), ::tolower);
+    return word;
+}
+
 void parseCorpus(char* &corpus, map<int, vector<string> > &c) { 
-    // 宣告一個ifstream型別的物件infile
+    // Declare an ifstream object infile
     ifstream infile;
-    // 開啟當前目錄下名為corpus的檔案
+    // Open the file named corpus in the current directory
     infile.open(corpus);
     if (!infile) {
         cerr << "error: unable to open the input file: " << corpus << endl;
@@ -23,41 +34,40 @@ void parseCorpus(char* &corpus, map<int, vector<string> > &c) {
 
     string line, field;
     
-    // 將檔案中的資料存入map<int, vector<string> > corpus
+    // Store the data from the file in map<int, vector<string> > corpus
     while (getline(infile, line)) {
-    istringstream ss(line);
-    vector<string> fields;
-    string token;
-    for(char& c : line){
-        if(c == ' ' || c == '"' || c == ','){
-            if (!token.empty()) {
-                fields.push_back(token);
-                token.clear();
+        istringstream ss(line);
+        vector<string> fields;
+        string token;
+        bool firstField = true;
+        for(char& c : line){
+            // Added '&' to delimiters and removed '-'
+            if(c == ' ' || c == '"' || c == ',' || c == ';' || c == ':' || c == '&'){
+                if (!token.empty()) {
+                    // Process the token before adding it to fields
+                    if (!firstField) {
+                        token = processWord(token);
+                    }
+                    fields.push_back(token);
+                    token.clear();
+                }
+                firstField = false;
+            }
+            else{
+                token += c;
             }
         }
-        else{
-            token += c;
+        // Process and push the last token if it's not empty
+        if (!token.empty()){
+            if (!firstField) {
+                token = processWord(token);
+            }
+            fields.push_back(token);
         }
+        int key = stoi(fields[0]);
+        c.insert({key, fields});
     }
-    // Push the last token if it's not empty
-    if (!token.empty()){
-        fields.push_back(token);
-    }
-    int key = stoi(fields[0]);
-    c.insert({key, fields});
-    }
-
     
     infile.close();    
-    // for (auto it = c.begin(); it != c.end(); ++it) {
-    //     cout << "Key: " << it->first << ", Value: ";
-    //     for (const auto& str : it->second) {
-    //         cout << str << " ";
-    //     }
-    //     cout << "\n";
-    // }
-
-    // cout << "Read corpus.txt success" << endl;
 }
-
 

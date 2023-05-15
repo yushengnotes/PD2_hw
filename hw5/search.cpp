@@ -6,6 +6,7 @@
 */
 
 #include <string>
+#include <algorithm>
 #include "TrieNode.h"
 
 using namespace std;
