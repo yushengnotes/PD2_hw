@@ -5,18 +5,22 @@
     
 */
 
+#include <iostream>
 #include <map>
 #include <vector>
 
-void setResults(map<int, map<int, vector<bool> > > &results, vector<int> &processedResults) {
+using namespace std;
+
+void setResults(map<int, map<int, vector<bool> > > &results, map<int, vector<int> > &processedResults) {
 
     for (auto it = results.begin(); it != results.end(); ++it) {
+        vector<int> resultsList;
         for (auto it_map = (it->second).begin(); it_map != (it->second).end(); ++it_map) {
-            for (auto it_vec = it_map.begin(); it_vec != it_map.end(); ++it_vec) {
-
-        cout << "Printing Trie for index " << it->first << ":" << endl;
-        printTrie(it->second);
+            // cout << "Processing query " << it->first << ", corpus " << it_map->first << ", first result " << (it_map->second).at(0) << "\n";
+            if ( (it_map->second).at(0) == true ) {
+                resultsList.push_back(it_map->first);
+            }
+        }
+        processedResults.insert({it->first, resultsList});
     }
-
-
 }

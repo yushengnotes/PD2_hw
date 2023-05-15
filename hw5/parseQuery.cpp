@@ -37,14 +37,14 @@ void parseQuery(char* &query, map<int, vector<string> > &q) {
     }
     
     infile.close();    
-    for (auto it = q.begin(); it != q.end(); ++it) {
-        cout << "Key: " << it->first << ", Value: ";
-        for (const auto& str : it->second) {
-            cout << str << " ";
-        }
-        cout << "\n";
-    }
+    // for (auto it = q.begin(); it != q.end(); ++it) {
+    //     cout << "Key: " << it->first << ", Value: ";
+    //     for (const auto& str : it->second) {
+    //         cout << str << " ";
+    //     }
+    //     cout << "\n";
+    // }
 
-    cout << "Read query.txt success" << endl;
+    // cout << "Read query.txt success" << endl;
 }
 

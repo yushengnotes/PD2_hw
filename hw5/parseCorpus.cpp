@@ -49,15 +49,15 @@ void parseCorpus(char* &corpus, map<int, vector<string> > &c) {
 
     
     infile.close();    
-    for (auto it = c.begin(); it != c.end(); ++it) {
-        cout << "Key: " << it->first << ", Value: ";
-        for (const auto& str : it->second) {
-            cout << str << " ";
-        }
-        cout << "\n";
-    }
+    // for (auto it = c.begin(); it != c.end(); ++it) {
+    //     cout << "Key: " << it->first << ", Value: ";
+    //     for (const auto& str : it->second) {
+    //         cout << str << " ";
+    //     }
+    //     cout << "\n";
+    // }
 
-    cout << "Read corpus.txt success" << endl;
+    // cout << "Read corpus.txt success" << endl;
 }
 
 
