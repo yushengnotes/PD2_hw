@@ -10,6 +10,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 void parseQuery(char* &query, map<int, vector<string> > &q) { 
@@ -30,6 +31,7 @@ void parseQuery(char* &query, map<int, vector<string> > &q) {
         vector<string> fields;
         // 將每一行的單字取出
         while (getline(ss, field, ' ')) { 
+            transform(field.begin(), field.end(), field.begin(), ::tolower);
             fields.push_back(field);
         }
         q.insert({key, fields});

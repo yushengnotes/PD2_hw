@@ -9,23 +9,23 @@
 #include <string>
 #include <map>
 #include <vector>
-#include "TrieNode.h"
-
 using namespace std;
 
-// 宣告用來新建node的副程式
-TrieNode* getNode(); 
-// 宣告用來輸入字串的副程式
-void insert(TrieNode* root, string word); 
+inline int convertToNum(const string &word) {
+    int sum = 0;
+    for (char c : word) {
+        sum += static_cast<int>(c);
+    }
+    return sum;
+}
 
-void buildCorpusTrie(map<int, vector<string> > &corpus, map<int,  TrieNode*> &corpusTrie) {
-
+void stringToNum(map<int, vector<string> > &corpus, map<int, vector<int> > &numCorpus) {
     for (auto it = corpus.begin(); it != corpus.end(); ++it) {
-        TrieNode* root = getNode();
+        vector<int> numVec; 
         for (const auto& str : it->second) {
-            // cout << str << " ";
-            insert(root, str);
+            int num = convertToNum(str);
+            numVec.push_back(num); 
         }
-        corpusTrie.insert({it->first, root});
+        numCorpus[it->first] = numVec; 
     }
 }

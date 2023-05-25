@@ -18,10 +18,10 @@ using namespace std;
 void parseCorpus(char* &corpus, map<int, vector<string> > &c);
 // 宣告用來開啟query.txt檔案的副程式
 void parseQuery(char* &query, map<int, vector<string> > &q);
-// 宣告用來創建corpusTrie的副程式
-void buildCorpusTrie(map<int, vector<string> > &corpus, map<int,  TrieNode*> &corpusTrie);
-// 宣告用來印出corpusTrie的副程式
-void printTrie(TrieNode* root, string str = "");
+// 宣告用來將string轉換成int的副程式
+void stringToNum(map<int, vector<string> > &corpus, map<int, vector<int> > &numCorpus);
+// 宣告用來計算各個query word的IDF(Inverse Document Frequency)的副程式
+void calculateIDF();
 // 宣告用來search corpus的副程式
 void searchCorpus(map<int,  TrieNode*> &corpusTrie, map<int, vector<string> > &query, map<int,  map<int, vector<bool> > > &results);
 // 宣告用來整理results的副程式
@@ -30,39 +30,58 @@ void setResults(map<int, map<int, vector<bool> > > &results, map<int, vector<int
 void printResults(map<int, vector<int> > &processedResults);
 
 int main(int argc, char *argv[]) {
-    // 宣告用以儲存原始的txt檔corpus資料的vector
+    // 以下為宣告變數之用 -------------------------
+
+    // 宣告用以儲存corpus資料
     map<int, vector<string> > corpus; 
-    // 宣告用以儲存原始的txt檔query資料的vector
+    // 宣告用以儲存query資料
     map<int, vector<string> > query; 
-    // 宣告用來儲存Trie的map
-    map<int, TrieNode*> corpusTrie; 
+    // 宣告用以儲存轉換成數字的corpus資料
+    map<int, vector<int> > numCorpus; 
+    // 宣告用以儲存轉換成數字的query資料
+    map<int, vector<int> > numQuery; 
+
     // 宣告用來儲存未經整理過的每行搜尋結果的map
     map<int, map<int, vector<bool> > > results;
     // 宣告用來儲存經整理過的每行搜尋結果的map
     map<int, vector<int> > processedResults; 
+
+    // 以下為呼叫函式之用 -------------------------
 
     // 呼叫用來讀取corpus.txt檔案的副程式
     parseCorpus(argv[1], corpus); 
     // 呼叫用來讀取query.txt檔案的副程式
     parseQuery(argv[2], query); 
 
-    // 呼叫用來創建corpusTrie的副程式
-    buildCorpusTrie(corpus, corpusTrie);
+    // 呼叫用來將string轉換成int的副程式
+    stringToNum(corpus, numCorpus);
+    // 呼叫用來將string轉換成int的副程式
+    stringToNum(query, numQuery);
 
-    // check the words stored in the Trie
-    for (auto it = corpusTrie.begin(); it != corpusTrie.end(); ++it) {
-        cout << "Printing Trie for index " << it->first << ":" << endl;
-        printTrie(it->second);
+    // A checkpoint for numCorpus
+    for (const auto& kv : numCorpus) {
+        cout << "Key: " << kv.first << "\nValues: ";
+        for (const auto& val : kv.second) {
+            std::cout << val << " ";
+        }
+        cout << "\n";
+    }
+    // A checkpoint for numQuery
+    for (const auto& kv : numQuery) {
+        cout << "Key: " << kv.first << "\nValues: ";
+        for (const auto& val : kv.second) {
+            std::cout << val << " ";
+        }
+        cout << "\n";
     }
 
     // 呼叫用來search corpus的副程式
-    searchCorpus(corpusTrie, query, results);
+    // searchCorpus(corpusTrie, query, results);
 
     // 呼叫用來整理results的副程式
-    setResults(results, processedResults);
-    
+    // setResults(results, processedResults);
     // 呼叫用來印出processedResults的副程式
-    printResults(processedResults);
+    // printResults(processedResults);
 
     return 0;
 }

@@ -30,7 +30,6 @@ inline void processSearchState(vector<bool> &searchState) {
 
 void searchCorpus(map<int,  TrieNode*> &corpusTrie, map<int, vector<string> > &query, map<int,  map<int, vector<bool> > > &results) {
 
-
     // To check if the query is working
     cout << "Size of query: " << query.size() << endl;
     for (const auto& item : query) {
