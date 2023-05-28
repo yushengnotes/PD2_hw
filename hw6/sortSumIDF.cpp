@@ -17,7 +17,7 @@ void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<
 
         // Sort the vector in ascending order
         sort(vec.begin(), vec.end(), [](const std::pair<int, double>& a, const std::pair<int, double>& b) {
-            return a.second < b.second;
+            return a.second > b.second;
         });
 
         // Insert the sorted vector into sortedSumIDF

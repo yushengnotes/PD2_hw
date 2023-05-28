@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 呼叫取sortedSumIDF的前3個數字的副程式
-    processSortSumIDF();
+    // processSortSumIDF();
 
     // 以下函式未定義
 

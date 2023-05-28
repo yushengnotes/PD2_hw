@@ -28,7 +28,7 @@ void calculateIDF(map<int, vector<int> > &numQuery, map<int, vector<int> > &numC
             // A checkpoint
             cout << occurNum << endl;
             // 計算出IDF
-            IDF = log10(occurNum/totalKey); 
+            IDF = log10(totalKey/occurNum); 
             // A checkpoint
             cout << IDF << endl;
             // 將IDF存入storeIDF中
