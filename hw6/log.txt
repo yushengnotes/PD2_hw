@@ -128,3 +128,14 @@ struct _LIBCPP_TEMPLATE_VIS pair
                             ^
 3 errors generated.
 make: *** [sortSumIDF.o] Error 1
+
+--------------------------------------------------
+
+05/28/23 23:13
+
+sortSumIDF.cpp: In function ‘void sortSumIDF(std::map<int, std::map<int, double> >&, std::map<int, std::vector<std::pair<int, double> > >&)’:
+sortSumIDF.cpp:16:9: error: ‘sort’ was not declared in this scope; did you mean ‘short’?
+   16 |         sort(vec.begin(), vec.end(), [](const std::pair<int, double>& a, const std::pair<int, double>& b) {
+      |         ^~~~
+      |         short
+make: *** [makefile:14: sortSumIDF.o] Error 1

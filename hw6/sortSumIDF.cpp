@@ -5,6 +5,8 @@
 #include <map> 
 #include <vector> 
 #include <utility> // for using pairs
+#include <algorithm> 
+
 using namespace std;
 
 void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF) {
