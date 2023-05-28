@@ -1,7 +1,5 @@
 /*  鄒雨笙 F64081070 程式設計二 第6次作業 2023/5/29
 
-    此副程式parseCSV()用來讀取csv檔案，並將檔案中的資料存入
-    vector<Employee>中
 */
 
 #include <iostream>

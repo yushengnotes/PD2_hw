@@ -1,7 +1,5 @@
 /*  鄒雨笙 F64081070 程式設計二 第6次作業 2023/5/29
 
-    此副程式parseQuery用來讀取.txt檔案
-
 */
 
 #include <iostream>
