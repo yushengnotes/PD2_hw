@@ -57,68 +57,68 @@ int main(int argc, char *argv[]) {
     // 呼叫用來將string轉換成int的副程式
     stringToNum(query, numQuery);
     // A checkpoint for numCorpus
-    for (const auto& kv : numCorpus) {
-        cout << "Key: " << kv.first << "\nValues: ";
-        for (const auto& val : kv.second) {
-            std::cout << val << " ";
-        }
-        cout << "\n";
-    }
+    // for (const auto& kv : numCorpus) {
+    //     cout << "Key: " << kv.first << "\nValues: ";
+    //     for (const auto& val : kv.second) {
+    //         std::cout << val << " ";
+    //     }
+    //     cout << "\n";
+    // }
     // A checkpoint for numQuery
-    for (const auto& kv : numQuery) {
-        cout << "Key: " << kv.first << "\nValues: ";
-        for (const auto& val : kv.second) {
-            std::cout << val << " ";
-        }
-        cout << "\n";
-    }
+    // for (const auto& kv : numQuery) {
+    //     cout << "Key: " << kv.first << "\nValues: ";
+    //     for (const auto& val : kv.second) {
+    //         std::cout << val << " ";
+    //     }
+    //     cout << "\n";
+    // }
 
     // 呼叫用來計算各個query word的IDF(Inverse Document Frequency)的副程式
     calculateIDF(numQuery, numCorpus, storeIDF);
     // A checkpoint for storeIDF
-    cout << "IDF:" << endl;
-    for (const auto& pair : storeIDF) {
-        std::cout << "Key: " << pair.first << ", Value: ";
-        cout << "{ ";
-        for (const auto& umap : pair.second) {
-            cout << "(" << umap.first << "," << umap.second << ") ";
-        }
-        cout << "} ";
-        
-        cout << "\n";
-    }
-    cout << endl;
+    // cout << "IDF:" << endl;
+    // for (const auto& pair : storeIDF) {
+    //     std::cout << "Key: " << pair.first << ", Value: ";
+    //     cout << "{ ";
+    //     for (const auto& umap : pair.second) {
+    //         cout << "(" << umap.first << "," << umap.second << ") ";
+    //     }
+    //     cout << "} ";
+    //     
+    //     cout << "\n";
+    // }
+    // cout << endl;
 
     // 呼叫用來計算每列query其有search到的corpus列其IDF和的副程式
     calculateSumIDF(numCorpus, storeIDF, storeSumIDF);
     // A checkpoint for storeSumIDF
-    cout << "Sum of IDF:" << endl;
-    for (const auto& outerPair : storeSumIDF) {
-        cout << "Key: " << outerPair.first << ", Value: { ";
-
-        for (const auto& innerPair : outerPair.second) {
-            cout << "{" << innerPair.first << "," << innerPair.second << "} ";
-        }
-
-        cout << "}\n";
-    }
-    cout << endl;
+    // cout << "Sum of IDF:" << endl;
+    // for (const auto& outerPair : storeSumIDF) {
+    //     cout << "Key: " << outerPair.first << ", Value: { ";
+    //
+    //     for (const auto& innerPair : outerPair.second) {
+    //         cout << "{" << innerPair.first << "," << innerPair.second << "} ";
+    //     }
+    //
+    //     cout << "}\n";
+    // }
+    // cout << endl;
 
     // 呼叫用來sort storeSumIDF的副程式
     sortSumIDF(storeSumIDF, sortedSumIDF);
     // A checkpoint for sortedSumIDF
-    cout << "Sorted Sum of IDF:" << endl;
-    for (const auto& kv : sortedSumIDF) {
-        cout << "Key: " << kv.first << ", Values: ";
-        for (const auto& pair : kv.second) {
-            cout << "(" << pair.first << ", " << pair.second << ") ";
-        }
-        cout << "\n";
-    }
-    cout << endl;
+    // cout << "Sorted Sum of IDF:" << endl;
+    // for (const auto& kv : sortedSumIDF) {
+    //     cout << "Key: " << kv.first << ", Values: ";
+    //     for (const auto& pair : kv.second) {
+    //         cout << "(" << pair.first << ", " << pair.second << ") ";
+    //     }
+    //     cout << "\n";
+    // }
+    // cout << endl;
 
     // Print the result
-    cout << "Result:" << endl;
+    // cout << "Result:" << endl;
     for (const auto& kv : sortedSumIDF) {
         int count = 0;
         for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
