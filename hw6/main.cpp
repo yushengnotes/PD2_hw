@@ -24,10 +24,6 @@ void calculateIDF(map<int, vector<int> > &numQuery, map<int, vector<int> > &numC
 void calculateSumIDF(map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF);
 // 宣告用來sort storeSumIDF的副程式
 void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF);
-// 宣告用來整理results的副程式
-// void setResults(map<int, map<int, vector<bool> > > &results, map<int, vector<int> > &processedResults);
-// 宣告用來印出processedResults的副程式
-// void printResults(map<int, vector<int> > &processedResults);
 
 int main(int argc, char *argv[]) {
     
@@ -48,9 +44,6 @@ int main(int argc, char *argv[]) {
     map<int, map<int, double> > storeSumIDF; 
     // 宣告用來儲存sorted storeSumIDF的map
     map<int, vector< pair<int, double > > > sortedSumIDF;
-
-    // 宣告用來儲存經整理過的每行搜尋結果的map
-    // map<int, vector<int> > processedResults; 
 
     // 以下為呼叫函式之用 -------------------------
 
@@ -83,6 +76,7 @@ int main(int argc, char *argv[]) {
     // 呼叫用來計算各個query word的IDF(Inverse Document Frequency)的副程式
     calculateIDF(numQuery, numCorpus, storeIDF);
     // A checkpoint for storeIDF
+    cout << "IDF:" << endl;
     for (const auto& pair : storeIDF) {
         std::cout << "Key: " << pair.first << ", Value: ";
         cout << "{ ";
@@ -98,6 +92,7 @@ int main(int argc, char *argv[]) {
     // 呼叫用來計算每列query其有search到的corpus列其IDF和的副程式
     calculateSumIDF(numCorpus, storeIDF, storeSumIDF);
     // A checkpoint for storeSumIDF
+    cout << "Sum of IDF:" << endl;
     for (const auto& outerPair : storeSumIDF) {
         cout << "Key: " << outerPair.first << ", Value: { ";
 
@@ -112,6 +107,7 @@ int main(int argc, char *argv[]) {
     // 呼叫用來sort storeSumIDF的副程式
     sortSumIDF(storeSumIDF, sortedSumIDF);
     // A checkpoint for sortedSumIDF
+    cout << "Sorted Sum of IDF:" << endl;
     for (const auto& kv : sortedSumIDF) {
         cout << "Key: " << kv.first << ", Values: ";
         for (const auto& pair : kv.second) {
@@ -119,14 +115,30 @@ int main(int argc, char *argv[]) {
         }
         cout << "\n";
     }
+    cout << endl;
 
-    // 呼叫取sortedSumIDF的前3個數字的副程式
-    // processSortSumIDF();
+    // Print the result
+    cout << "Result:" << endl;
+    for (const auto& kv : sortedSumIDF) {
+        int count = 0;
+        for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
+            if (count >= 3) break; // Stop printing after 3 keys
 
-    // 以下函式未定義
+            // If the second value is 0, print -1 and skip the first value
+            if (pair->second == 0) {
+                cout << "-1";
+            } else {
+                cout << pair->first;
+            }
 
-    // 呼叫用來印出processedResults的副程式
-    // printResults(processedResults);
+            // Print space only if it's not the last element
+            if (next(pair) != kv.second.end() && count < 2) {
+                cout << " ";
+            }
+            ++count;
+        }
+        cout << "\n";
+    }
 
     return 0;
 }
