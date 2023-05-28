@@ -5,24 +5,34 @@
     
 */
 
-#include <string>
-#include <algorithm>
-#include "TrieNode.h"
-
+#include <map> 
+#include <vector> 
+#include <utility> // for using pairs 
 using namespace std;
 
-bool search(TrieNode* root, string word) {
-    transform(word.begin(), word.end(), word.begin(),
-        [](unsigned char c){ return tolower(c); });
-    
-    TrieNode* node = root;
-    for (char ch : word) {
-        if (node->children.count(ch) == 0) {
-            return false;
+void search(const vector< pair<int, double> > &nums, const map<int, vector<int> > &numCorpus, map<int, vector<double> > &IDF) {
+
+    bool flag = false;
+    vector<double> vecIDF;
+
+    for (const auto& key : numCorpus) {
+        for(const auto& num : nums) {
+            for(const auto& value : key.second) {
+                if(value == num.first) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag == true) {
+                vecIDF.push_back(num.second);
+            }
+            else {
+                vecIDF.push_back(0);
+            }
+            flag = false;
         }
-        node = node->children[ch];
+        IDF.insert({key.first, vecIDF});
+        vecIDF.clear();
     }
-    return node->isEndOfWord;
+    
 }
-
-
