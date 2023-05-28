@@ -100,3 +100,31 @@ _ForwardIterator1 search(_ForwardIterator1 __first1, _ForwardIterator1 __last1,
                   ^
 1 error generated.
 make: *** [calculateSumIDF.o] Error 1
+
+---------------------------------------------------
+
+05/28/23 21:51
+
+sortSumIDF.cpp:16:17: error: 'pair' does not name a template but is followed by template arguments; did you mean '::pair'?
+        vector< pair<int, double> > vec(pair.second.begin(), pair.second.end());
+                ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/pair.h:40:29: note: '::pair' declared here
+struct _LIBCPP_TEMPLATE_VIS pair
+                            ^
+sortSumIDF.cpp:14:22: note: non-template declaration found by name lookup
+    for (const auto& pair : storeSumIDF) {
+                     ^
+sortSumIDF.cpp:19:47: error: no template named 'pair'; did you mean '::pair'?
+        sort(vec.begin(), vec.end(), [](const pair<int, double>& a, const pair<int, double>& b) {
+                                              ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/pair.h:40:29: note: '::pair' declared here
+struct _LIBCPP_TEMPLATE_VIS pair
+                            ^
+sortSumIDF.cpp:19:75: error: no template named 'pair'; did you mean '::pair'?
+        sort(vec.begin(), vec.end(), [](const pair<int, double>& a, const pair<int, double>& b) {
+                                                                          ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/pair.h:40:29: note: '::pair' declared here
+struct _LIBCPP_TEMPLATE_VIS pair
+                            ^
+3 errors generated.
+make: *** [sortSumIDF.o] Error 1

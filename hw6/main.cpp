@@ -22,6 +22,8 @@ void stringToNum(map<int, vector<string> > &corpus, map<int, vector<int> > &numC
 void calculateIDF(map<int, vector<int> > &numQuery, map<int, vector<int> > &numCorpus, map <int, vector< pair<int,double> > > &storeIDF);
 // 宣告用來計算每列query其有search到的corpus列其IDF和的副程式
 void calculateSumIDF(map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF);
+// 宣告用來sort storeSumIDF的副程式
+void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF);
 // 宣告用來整理results的副程式
 // void setResults(map<int, map<int, vector<bool> > > &results, map<int, vector<int> > &processedResults);
 // 宣告用來印出processedResults的副程式
@@ -41,12 +43,12 @@ int main(int argc, char *argv[]) {
     map<int, vector<int> > numQuery; 
 
     // 宣告用以儲存各個query word IDF的map
-    map <int, vector< pair<int,double> > > storeIDF;
+    map<int, vector< pair<int,double> > > storeIDF;
     // 宣告用以儲存各個query word sum of IDF的map
-    map <int, map<int, double> > storeSumIDF; 
+    map<int, map<int, double> > storeSumIDF; 
+    // 宣告用來儲存sorted storeSumIDF的map
+    map<int, vector< pair<int, double > > > sortedSumIDF;
 
-    // 宣告用來儲存未經整理過的每行搜尋結果的map
-    // map<int, map<int, vector<bool> > > results;
     // 宣告用來儲存經整理過的每行搜尋結果的map
     // map<int, vector<int> > processedResults; 
 
@@ -91,6 +93,7 @@ int main(int argc, char *argv[]) {
         
         cout << "\n";
     }
+    cout << endl;
 
     // 呼叫用來計算每列query其有search到的corpus列其IDF和的副程式
     calculateSumIDF(numCorpus, storeIDF, storeSumIDF);
@@ -104,14 +107,23 @@ int main(int argc, char *argv[]) {
 
         cout << "}\n";
     }
+    cout << endl;
+
+    // 呼叫用來sort storeSumIDF的副程式
+    sortSumIDF(storeSumIDF, sortedSumIDF);
+    // A checkpoint for sortedSumIDF
+    for (const auto& kv : sortedSumIDF) {
+        cout << "Key: " << kv.first << ", Values: ";
+        for (const auto& pair : kv.second) {
+            cout << "(" << pair.first << ", " << pair.second << ") ";
+        }
+        cout << "\n";
+    }
+
+    // 呼叫取sortedSumIDF的前3個數字的副程式
+    processSortSumIDF();
 
     // 以下函式未定義
-
-    // 呼叫用來sort results的副程式
-    // sortResult();
-
-    // 呼叫取result的前3個數字的副程式
-    // processResult();
 
     // 呼叫用來印出processedResults的副程式
     // printResults(processedResults);
