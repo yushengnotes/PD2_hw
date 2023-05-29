@@ -20,6 +20,7 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '['), word.end());
     word.erase(remove(word.begin(), word.end(), ']'), word.end());
     word.erase(remove(word.begin(), word.end(), '-'), word.end());
+    word.erase(remove(word.begin(), word.end(), '+'), word.end());
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
     transform(word.begin(), word.end(), word.begin(), ::tolower);
     return word;
