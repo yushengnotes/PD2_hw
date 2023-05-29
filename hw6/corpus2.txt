@@ -1,4 +1,0 @@
-5459, "IBM DB2 Document Manager With IBM Records Manager Solution Guide"
-578965, "Dynamic Selection of Composite Web Services Based on a New Structured TCNN"
-349299, "Proximity-based document representation for named entity retrieval"
-357395, "Efficiently Mapping Integrity Constraints from Relational Database to XML Document"
