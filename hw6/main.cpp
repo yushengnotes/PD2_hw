@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <string> // for using stoi
 #include <utility> // for using pairs 
 #include <unordered_map>
 using namespace std;
@@ -119,10 +120,11 @@ int main(int argc, char *argv[]) {
 
     // Print the result
     // cout << "Result:" << endl;
+    int stopCount = stoi(argv[3]);
     for (const auto& kv : sortedSumIDF) {
         int count = 0;
         for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
-            if (count >= 3) break; // Stop printing after 3 keys
+            if (count >= stopCount) break; // Stop printing after stopCount keys
 
             // If the second value is 0, print -1 and skip the first value
             if (pair->second == 0) {

@@ -139,3 +139,13 @@ sortSumIDF.cpp:16:9: error: ‘sort’ was not declared in this scope; did you m
       |         ^~~~
       |         short
 make: *** [makefile:14: sortSumIDF.o] Error 1
+
+--------------------------------------------------
+
+05/29/23 13:06
+
+main.cpp:125:23: error: comparison between pointer and integer ('int' and 'char *')
+            if (count >= argv[3]) break; // Stop printing after argv[3] keys
+                ~~~~~ ^  ~~~~~~~
+1 error generated.
+make: *** [main.o] Error 1
