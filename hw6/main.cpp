@@ -14,15 +14,15 @@
 using namespace std;
 
 // 宣告用來開啟corpus.txt檔案的副程式
-void parseCorpus(char* &corpus, map<int, vector<string> > &c);
+void parseCorpus(char* &corpus, unordered_map<int, vector<string> > &c);
 // 宣告用來開啟query.txt檔案的副程式
-void parseQuery(char* &query, map<int, vector<string> > &q);
+void parseQuery(char* &query, unordered_map<int, vector<string> > &q);
 // 宣告用來將string轉換成int的副程式
-void stringToNum(map<int, vector<string> > &corpus, map<int, vector<int> > &numCorpus);
+void stringToNum(unordered_map<int, vector<string> > &corpus, unordered_map<int, vector<int> > &numCorpus);
 // 宣告用來計算各個query word的IDF(Inverse Document Frequency)的副程式
-void calculateIDF(map<int, vector<int> > &numQuery, map<int, vector<int> > &numCorpus, map <int, vector< pair<int,double> > > &storeIDF);
+void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int,double> > > &storeIDF);
 // 宣告用來計算每列query其有search到的corpus列其IDF和的副程式
-void calculateSumIDF(map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF);
+void calculateSumIDF(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF);
 // 宣告用來sort storeSumIDF的副程式
 void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF);
 
@@ -31,13 +31,13 @@ int main(int argc, char *argv[]) {
     // 以下為宣告變數之用 -------------------------
 
     // 宣告用以儲存corpus資料
-    map<int, vector<string> > corpus; 
+    unordered_map<int, vector<string> > corpus; 
     // 宣告用以儲存query資料
-    map<int, vector<string> > query; 
+    unordered_map<int, vector<string> > query; 
     // 宣告用以儲存轉換成數字的corpus資料
-    map<int, vector<int> > numCorpus; 
+    unordered_map<int, vector<int> > numCorpus; 
     // 宣告用以儲存轉換成數字的query資料
-    map<int, vector<int> > numQuery; 
+    unordered_map<int, vector<int> > numQuery; 
 
     // 宣告用以儲存各個query word IDF的map
     map<int, vector< pair<int,double> > > storeIDF;
@@ -53,11 +53,20 @@ int main(int argc, char *argv[]) {
     // 呼叫用來讀取query.txt檔案的副程式
     parseQuery(argv[2], query); 
 
+    // for (const auto& kv : corpus) {
+    //     std::cout << "Key: " << kv.first << ", Values: ";
+    //     for (const auto& str : kv.second) {
+    //         std::cout << str << " ";
+    //     }
+    //     std::cout << "\n";
+    // }
+
     // 呼叫用來將string轉換成int的副程式
     stringToNum(corpus, numCorpus);
     // 呼叫用來將string轉換成int的副程式
     stringToNum(query, numQuery);
     // A checkpoint for numCorpus
+    // cout << "A checkpoint for numCorpus" << endl;
     // for (const auto& kv : numCorpus) {
     //     cout << "Key: " << kv.first << "\nValues: ";
     //     for (const auto& val : kv.second) {
@@ -65,7 +74,8 @@ int main(int argc, char *argv[]) {
     //     }
     //     cout << "\n";
     // }
-    // A checkpoint for numQuery
+    // // A checkpoint for numQuery
+    // cout << "A checkpoint for numQuery" << endl;
     // for (const auto& kv : numQuery) {
     //     cout << "Key: " << kv.first << "\nValues: ";
     //     for (const auto& val : kv.second) {
@@ -85,7 +95,7 @@ int main(int argc, char *argv[]) {
     //         cout << "(" << umap.first << "," << umap.second << ") ";
     //     }
     //     cout << "} ";
-    //     
+    //
     //     cout << "\n";
     // }
     // cout << endl;

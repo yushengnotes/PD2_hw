@@ -7,7 +7,7 @@
 #include <utility> // for using pairs 
 using namespace std;
 
-int searchOccurNum(int num, const map<int, vector<int> > &numCorpus) {
+int searchOccurNum(int num, const unordered_map<int, vector<int> > &numCorpus) {
 
     int occurNum = 0;
     bool flag = false;

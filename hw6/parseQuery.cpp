@@ -11,7 +11,7 @@
 #include <algorithm>
 using namespace std;
 
-void parseQuery(char* &query, map<int, vector<string> > &q) { 
+void parseQuery(char* &query, unordered_map<int, vector<string> > &q) { 
     // 宣告一個ifstream型別的物件infile
     ifstream infile;
     // 開啟當前目錄下名為corpus的檔案

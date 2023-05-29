@@ -7,10 +7,10 @@
 #include <utility> // for using pairs
 using namespace std;
 
-void search(const vector< pair<int, double> > &nums, const map<int, vector<int> > &numCorpus, map<int, vector<double> > &IDF);
+void search(const vector< pair<int, double> > &nums, const unordered_map<int, vector<int> > &numCorpus, map<int, vector<double> > &IDF);
 void processIDF(map<int, vector<double> > &IDF, map<int, double> &sumIDF);
 
-void calculateSumIDF(map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF) {
+void calculateSumIDF(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF) {
 
     map<int, double> sumIDF;
     map<int, vector<double> > IDF;

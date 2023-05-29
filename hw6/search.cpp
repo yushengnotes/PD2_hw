@@ -7,7 +7,7 @@
 #include <utility> // for using pairs 
 using namespace std;
 
-void search(const vector< pair<int, double> > &nums, const map<int, vector<int> > &numCorpus, map<int, vector<double> > &IDF) {
+void search(const vector< pair<int, double> > &nums, const unordered_map<int, vector<int> > &numCorpus, map<int, vector<double> > &IDF) {
 
     bool flag = false;
     vector<double> vecIDF;

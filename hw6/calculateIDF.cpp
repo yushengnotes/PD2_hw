@@ -9,11 +9,11 @@
 #include <iostream>
 using namespace std;
 
-int searchOccurNum(int num, const map<int, vector<int> > &numCorpus);
+int searchOccurNum(int num, const unordered_map<int, vector<int> > &numCorpus);
 
-void calculateIDF(map<int, vector<int> > &numQuery, map<int, vector<int> > &numCorpus, map <int, vector< pair<int, double> > > &storeIDF) {
+void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int, double> > > &storeIDF) {
 
-    double totalKey = numQuery.size();
+    double totalKey = numCorpus.size();
     double occurNum;
     double IDF;
     for (const auto& it : numQuery) {
@@ -24,6 +24,7 @@ void calculateIDF(map<int, vector<int> > &numQuery, map<int, vector<int> > &numC
             occurNum = searchOccurNum(num, numCorpus);
             // A checkpoint
             // cout << occurNum << endl;
+            // cout << totalKey << endl;
             // 計算出IDF
             IDF = log10(totalKey/occurNum); 
             // A checkpoint
