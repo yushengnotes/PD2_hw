@@ -23,8 +23,40 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '+'), word.end());
     word.erase(remove(word.begin(), word.end(), '&'), word.end());
     word.erase(remove(word.begin(), word.end(), ';'), word.end());
+    word.erase(remove(word.begin(), word.end(), ':'), word.end());
+    word.erase(remove(word.begin(), word.end(), '!'), word.end());
     word.erase(remove(word.begin(), word.end(), '\''), word.end());
     word.erase(remove(word.begin(), word.end(), '/'), word.end());
+    word.erase(remove(word.begin(), word.end(), ','), word.end());
+    word.erase(remove(word.begin(), word.end(), '/'), word.end());
+    word.erase(remove(word.begin(), word.end(), '\\'), word.end());
+    word.erase(remove(word.begin(), word.end(), '"'), word.end());
+    const string target = "®";
+    size_t pos = string::npos;
+    // Loop while we can still find the target string
+    while((pos = word.find(target)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target.length());
+    }
+    const string target2 = "“";
+    // Loop while we can still find the target string
+    while((pos = word.find(target2)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target2.length());
+    }
+    const string target3 = "”";
+    // Loop while we can still find the target string
+    while((pos = word.find(target3)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target3.length());
+    }
+    const string target4 = "∞";
+    // Loop while we can still find the target string
+    while((pos = word.find(target4)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target3.length());
+    }
+    
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
     transform(word.begin(), word.end(), word.begin(), ::tolower);
     return word;
@@ -48,7 +80,7 @@ void parseCorpus(char* &corpus, unordered_map<int, vector<string> > &c) {
         string token;
         bool firstField = true;
         for(char& c : line){
-            if(c == ' ' || c == '"' || c == ','  || c == ':'){
+            if(c == ' '){
                 if (!token.empty()) {
                     // Process the token before adding it to fields
                     if (!firstField) {
