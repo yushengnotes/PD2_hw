@@ -12,6 +12,15 @@
 #include <algorithm>
 using namespace std;
 
+std::string replaceSubstring(std::string str, const std::string& from, const std::string& to) {
+    size_t startPos = 0;
+    while((startPos = str.find(from, startPos)) != std::string::npos) {
+        str.replace(startPos, from.length(), to);
+        startPos += to.length(); // Handles case where 'to' is a substring of 'from'
+    }
+    return str;
+}
+
 // Function to process the word
 string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '('), word.end());
@@ -32,6 +41,9 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '/'), word.end());
     word.erase(remove(word.begin(), word.end(), '\\'), word.end());
     word.erase(remove(word.begin(), word.end(), '"'), word.end());
+    word.erase(remove(word.begin(), word.end(), '*'), word.end());
+    word.erase(remove(word.begin(), word.end(), '`'), word.end());
+    word = replaceSubstring(word, "G⃗", "g");
     const string target = "®";
     size_t pos = string::npos;
     // Loop while we can still find the target string
@@ -55,9 +67,26 @@ string processWord(string word) {
     // Loop while we can still find the target string
     while((pos = word.find(target4)) != string::npos){
         // Remove the target string from the source string
-        word.erase(pos, target3.length());
+        word.erase(pos, target4.length());
     }
-    
+    const string target5 = "µ";
+    // Loop while we can still find the target string
+    while((pos = word.find(target5)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target5.length());
+    }
+    const string target6 = "3-µ";
+    // Loop while we can still find the target string
+    while((pos = word.find(target6)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target6.length());
+    }
+    const string target7 = "μ";
+    // Loop while we can still find the target string
+    while((pos = word.find(target7)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target7.length());
+    }
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
     transform(word.begin(), word.end(), word.begin(), ::tolower);
     return word;
@@ -109,4 +138,3 @@ void parseCorpus(char* &corpus, unordered_map<int, vector<string> > &c) {
     
     infile.close();    
 }
-
