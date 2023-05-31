@@ -21,6 +21,10 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), ']'), word.end());
     word.erase(remove(word.begin(), word.end(), '-'), word.end());
     word.erase(remove(word.begin(), word.end(), '+'), word.end());
+    word.erase(remove(word.begin(), word.end(), '&'), word.end());
+    word.erase(remove(word.begin(), word.end(), ';'), word.end());
+    word.erase(remove(word.begin(), word.end(), '\''), word.end());
+    word.erase(remove(word.begin(), word.end(), '/'), word.end());
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
     transform(word.begin(), word.end(), word.begin(), ::tolower);
     return word;
@@ -44,7 +48,7 @@ void parseCorpus(char* &corpus, unordered_map<int, vector<string> > &c) {
         string token;
         bool firstField = true;
         for(char& c : line){
-            if(c == ' ' || c == '"' || c == ',' || c == ';' || c == ':' || c == '&' || c == '\''){
+            if(c == ' ' || c == '"' || c == ','  || c == ':'){
                 if (!token.empty()) {
                     // Process the token before adding it to fields
                     if (!firstField) {
