@@ -15,10 +15,8 @@ To run the program in the server of the course lecturer to check if the result a
 
 ![1](https://github.com/yushengtzou/PD2_hw/assets/84191095/c9fe7395-7051-4ae2-bf3d-1f41fe2c5af5)
 
-<br>
 
 ![2](https://github.com/yushengtzou/PD2_hw/assets/84191095/222cc6ac-722b-4901-97ee-9e646231ac80)
 
-<br>
 
 ![3](https://github.com/yushengtzou/PD2_hw/assets/84191095/d87392db-0333-4374-9328-b90f29d40ef7)
