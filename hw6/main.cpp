@@ -136,6 +136,11 @@ int main(int argc, char *argv[]) {
         for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
             if (count >= stopCount) break; // Stop printing after stopCount keys
 
+            // Print space only if it's not the first element
+            if (count != 0) {
+                cout << " ";
+            }
+
             // If the second value is 0, print -1 and skip the first value
             if (pair->second == 0) {
                 cout << "-1";
@@ -143,10 +148,6 @@ int main(int argc, char *argv[]) {
                 cout << pair->first;
             }
 
-            // Print space only if it's not the last element
-            if (next(pair) != kv.second.end() && count < 2) {
-                cout << " ";
-            }
             ++count;
         }
         cout << "\n";
