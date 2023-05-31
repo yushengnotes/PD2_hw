@@ -9,7 +9,7 @@ To be honest, I hadn't finished the hw3 really well so hw3 was unfinish and that
 
 ### hw6: A Simple Search Engine
 
-To run the program in the server of the course lecturer to check if the result are identical to the answers provided. 
+To run the program in the server of the course lecturer to check if the result are identical to the answers provided. It totally took about 15 mins to run and check all testcases. 
 
 <br>
 
