@@ -7,7 +7,7 @@ To be honest, I hadn't finished the hw3 really well so hw3 was unfinish and that
 
 ## The result of hw
 
-#### hw6: A Simple Search Engine
+### hw6: A Simple Search Engine
 
 To run the program in the server of the course lecturer to check if the result are identical to the answers provided. 
 
