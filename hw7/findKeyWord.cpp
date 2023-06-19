@@ -5,13 +5,13 @@
 #include <map> 
 #include <unordered_map> 
 #include <vector> 
-#include <utility> // for using pairs 
+#include <utility> // for using pairs
 using namespace std;
 
-void search(const vector< pair<int, double> > &nums, const unordered_map<int, vector<int> > &numCorpus, map<int, vector<double> > &IDF) {
+void findKeyWord(const vector< pair<int, double> > &nums, const unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int,double> > > &keyWord) {
 
     bool flag = false;
-    vector<double> vecIDF;
+    vector< pair<int,double> > keyWords;
 
     for (const auto& key : numCorpus) {
         for(const auto& num : nums) {
@@ -22,15 +22,12 @@ void search(const vector< pair<int, double> > &nums, const unordered_map<int, ve
                 }
             }
             if (flag == true) {
-                vecIDF.push_back(num.second);
-            }
-            else {
-                vecIDF.push_back(0);
+                keyWords.push_back(num);
             }
             flag = false;
         }
-        IDF.insert({key.first, vecIDF});
-        vecIDF.clear();
+        keyWord.insert({key.first, keyWords});
+        keyWords.clear();
     }
     
 }

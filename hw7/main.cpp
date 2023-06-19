@@ -21,14 +21,20 @@ void parseQuery(char* &query, unordered_map<int, vector<string> > &q);
 void stringToNum(unordered_map<int, vector<string> > &corpus, unordered_map<int, vector<int> > &numCorpus);
 // 宣告用來計算各個query word的IDF(Inverse Document Frequency)的副程式
 void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int,double> > > &storeIDF);
-// 宣告用來計算每列query其有search到的corpus列其IDF和的副程式
-void calculateSumIDF(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeSumIDF);
+// 宣告計算每列query其有search到的corpus列其前3個IDF值最高的副程式
+void findTop3IDFword(const unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeTop3IDF);
+// 宣告算出各document的word數量的副程式
+void calculateTotalWord();
+// 宣告算出各document的new_tf(s)的副程式
+void calculateTF();
+// 宣告算出各document的rank(d, q)的副程式
+void calculateRank();
 // 宣告用來sort storeSumIDF的副程式
 void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF);
 
 int main(int argc, char *argv[]) {
     
-    // 以下為宣告變數之用 -------------------------
+    // ----------------- 以下為宣告變數之用 -----------------
 
     // 宣告用以儲存corpus資料
     unordered_map<int, vector<string> > corpus; 
@@ -41,12 +47,14 @@ int main(int argc, char *argv[]) {
 
     // 宣告用以儲存各個query word IDF的map
     map<int, vector< pair<int,double> > > storeIDF;
+    // 宣告用以儲存search到的corpus列其前3個IDF值最高的map
+    map <int, map<int, double> > storeTop3IDF;
     // 宣告用以儲存各個query word sum of IDF的map
     map<int, map<int, double> > storeSumIDF; 
     // 宣告用來儲存sorted storeSumIDF的map
     map<int, vector< pair<int, double > > > sortedSumIDF;
 
-    // 以下為呼叫函式之用 -------------------------
+    // ----------------- 以下為呼叫函式之用 -----------------
 
     // 呼叫用來讀取corpus.txt檔案的副程式
     parseCorpus(argv[1], corpus); 
@@ -100,23 +108,23 @@ int main(int argc, char *argv[]) {
     // }
     // cout << endl;
 
-    // 呼叫用來計算每列query其有search到的corpus列其IDF和的副程式
-    calculateSumIDF(numCorpus, storeIDF, storeSumIDF);
-    // A checkpoint for storeSumIDF
-    // cout << "Sum of IDF:" << endl;
-    // for (const auto& outerPair : storeSumIDF) {
-    //     cout << "Key: " << outerPair.first << ", Value: { ";
-    //
-    //     for (const auto& innerPair : outerPair.second) {
-    //         cout << "{" << innerPair.first << "," << innerPair.second << "} ";
-    //     }
-    //
-    //     cout << "}\n";
-    // }
-    // cout << endl;
+    // 以下函式未定義
+
+    // 呼叫計算每列query其有search到的corpus列的keyword的副程式
+    findTop3IDFword(numCorpus, storeIDF, storeTop3IDF); 
+
+    // 呼叫算出各document的word數量
+    // calculateTotalWord();
+
+    // 呼叫算出各document的new_tf(s)
+    // calculateTF();
+
+    // 呼叫算出各document的rank(d, q)
+    // calculateRank();
+
 
     // 呼叫用來sort storeSumIDF的副程式
-    sortSumIDF(storeSumIDF, sortedSumIDF);
+    // sortSumIDF(storeSumIDF, sortedSumIDF);
     // A checkpoint for sortedSumIDF
     // cout << "Sorted Sum of IDF:" << endl;
     // for (const auto& kv : sortedSumIDF) {
@@ -130,28 +138,28 @@ int main(int argc, char *argv[]) {
 
     // Print the result
     // cout << "Result:" << endl;
-    int stopCount = stoi(argv[3]);
-    for (const auto& kv : sortedSumIDF) {
-        int count = 0;
-        for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
-            if (count >= stopCount) break; // Stop printing after stopCount keys
-
+    // int stopCount = stoi(argv[3]);
+    // for (const auto& kv : sortedSumIDF) {
+    //     int count = 0;
+    //     for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
+    //         if (count >= stopCount) break; // Stop printing after stopCount keys
+    //
             // Print space only if it's not the first element
-            if (count != 0) {
-                cout << " ";
-            }
+            // if (count != 0) {
+            //     cout << " ";
+            // }
 
             // If the second value is 0, print -1 and skip the first value
-            if (pair->second == 0) {
-                cout << "-1";
-            } else {
-                cout << pair->first;
-            }
-
-            ++count;
-        }
-        cout << "\n";
-    }
+    //         if (pair->second == 0) {
+    //             cout << "-1";
+    //         } else {
+    //             cout << pair->first;
+    //         }
+    //
+    //         ++count;
+    //     }
+    //     cout << "\n";
+    // }
 
     return 0;
 }
