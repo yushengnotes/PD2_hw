@@ -12,14 +12,14 @@ using namespace std;
 
 int searchOccurNum(int num, const unordered_map<int, vector<int> > &numCorpus);
 
-void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int, double> > > &storeIDF) {
+void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int, pair<double, double> > > > &storeIDF) {
 
     double totalKey = numCorpus.size();
     double occurNum;
     double IDF;
     for (const auto& it : numQuery) {
-        vector< pair<int,double> > perQueryIDF;
-        pair<int,double> queryIDF;
+        vector< pair<int, pair<double, double> > > perQueryIDF;
+        pair<int, pair<double, double> > queryIDF;
         for (const auto& num : it.second) {
             // 計算出word在corpus中所出現的次數，各corpus超過1則記為1
             occurNum = searchOccurNum(num, numCorpus);
@@ -32,7 +32,7 @@ void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int,
             cout << IDF << endl;
             // 將IDF存入storeIDF中
             queryIDF.first = num;
-            queryIDF.second = IDF;
+            queryIDF.second.first = IDF;
             perQueryIDF.push_back(queryIDF);
         }
         storeIDF.insert({it.first, perQueryIDF});

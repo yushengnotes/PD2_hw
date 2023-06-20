@@ -9,33 +9,39 @@
 #include <utility> // for using pairs
 using namespace std;
 
-void findKeyWord(const vector< pair<int, double> > &nums, const unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int,double> > > &keyWord); 
+void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &keyWord); 
 
-void findTop3IDFword(const unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeTop3IDF) {
+void findTop3IDFword(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, double> > &storeTop3IDF) {
 
-    map<int, vector< pair<int,double> > > keyWord;
-    map <int, map<int, vector< pair<int,double> > > > storeKeyWord;
+    map<int, vector< pair<int, pair<double, double> > > > keyWord;
+    map <int, map<int, vector< pair<int, pair<double, double> > > > > storeKeyWord;
 
-    for (const auto& key : storeIDF) {
+    for (auto& key : storeIDF) {
         findKeyWord(key.second, numCorpus, keyWord);
         storeKeyWord.insert({key.first, keyWord});
         keyWord.clear();
     }
-    for (const auto & outerMapElement : storeKeyWord) {
-    int outerKey = outerMapElement.first;
-    std::cout << "Outer Key: " << outerKey << std::endl;
 
-    for (const auto & innerMapElement : outerMapElement.second) {
-        int innerKey = innerMapElement.first;
-        std::cout << "    Inner Key: " << innerKey << std::endl;
+    // Checkpoint for storeKeyWord
+    // first double是idf、second double是new_tf*idf
+    for(const auto & outer_pair : storeKeyWord) {
+    int outer_key = outer_pair.first;
+    cout << "Outer Key: " << outer_key << endl;
 
-            for (const auto & vectorElement : innerMapElement.second) {
-                int pairFirst = vectorElement.first;
-                double pairSecond = vectorElement.second;
+    for(const auto & inner_pair : outer_pair.second) {
+        int inner_key = inner_pair.first;
+        cout << "\tInner Key: " << inner_key << endl;
 
-                std::cout << "        Pair: (" << pairFirst << ", " << pairSecond << ")" << std::endl;
-            }
+        for(const auto & vector_element : inner_pair.second) {
+            int vector_key = vector_element.first;
+            cout << "\t\tVector Key: " << vector_key << endl;
+
+            double first_double = vector_element.second.first;
+            double second_double = vector_element.second.second;
+            cout << "\t\tFirst Double: " << first_double << ", Second Double: " << second_double << endl;
         }
     }
+}
+
 
 }

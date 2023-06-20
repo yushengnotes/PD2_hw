@@ -3,28 +3,34 @@
 */
 
 #include <map> 
+#include <iostream> 
 #include <unordered_map> 
 #include <vector> 
 #include <utility> // for using pairs
 using namespace std;
 
-void findKeyWord(const vector< pair<int, double> > &nums, const unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int,double> > > &keyWord) {
+void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int,pair<double, double> > > > &keyWord) {
 
+    double i = 0;
+    double tf;
     bool flag = false;
-    vector< pair<int,double> > keyWords;
+    vector< pair<int, pair<double, double> > > keyWords;
 
-    for (const auto& key : numCorpus) {
-        for(const auto& num : nums) {
-            for(const auto& value : key.second) {
+    for (auto& key : numCorpus) {
+        for(auto& num : nums) {
+            for(auto& value : key.second) {
                 if(value == num.first) {
+                    i++;
                     flag = true;
-                    break;
                 }
             }
+            tf = i / ((key.second).size()-1);
+            num.second.second = num.second.first * tf;
             if (flag == true) {
                 keyWords.push_back(num);
             }
             flag = false;
+            i = 0;
         }
         keyWord.insert({key.first, keyWords});
         keyWords.clear();

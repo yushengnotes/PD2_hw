@@ -20,9 +20,9 @@ void parseQuery(char* &query, unordered_map<int, vector<string> > &q);
 // 宣告用來將string轉換成int的副程式
 void stringToNum(unordered_map<int, vector<string> > &corpus, unordered_map<int, vector<int> > &numCorpus);
 // 宣告用來計算各個query word的IDF(Inverse Document Frequency)的副程式
-void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int,double> > > &storeIDF);
+void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int,pair<double, double> > > > &storeIDF);
 // 宣告計算每列query其有search到的corpus列其前3個IDF值最高的副程式
-void findTop3IDFword(const unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, double> > > &storeIDF, map <int, map<int, double> > &storeTop3IDF);
+void findTop3IDFword(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, double> > &storeTop3IDF);
 // 宣告算出各document的word數量的副程式
 void calculateTotalWord();
 // 宣告算出各document的new_tf(s)的副程式
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     unordered_map<int, vector<int> > numQuery; 
 
     // 宣告用以儲存各個query word IDF的map
-    map<int, vector< pair<int,double> > > storeIDF;
+    map<int, vector< pair<int, pair<double, double> > > > storeIDF;
     // 宣告用以儲存search到的corpus列其前3個IDF值最高的map
     map <int, map<int, double> > storeTop3IDF;
     // 宣告用以儲存各個query word sum of IDF的map
