@@ -7,6 +7,7 @@
 #include <unordered_map> 
 #include <vector> 
 #include <utility> // for using pairs
+#include <algorithm>
 using namespace std;
 
 void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int,pair<double, double> > > > &keyWord) {
@@ -32,6 +33,13 @@ void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map
             flag = false;
             i = 0;
         }
+        // 依據second double即new_tf*idf來排序
+        sort(keyWords.begin(), keyWords.end(),
+    [](const pair<int, pair<double, double>>& a, const pair<int, pair<double, double>>& b) {
+            return a.second.second > b.second.second;
+            }
+        );
+
         keyWord.insert({key.first, keyWords});
         keyWords.clear();
     }
