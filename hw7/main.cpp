@@ -22,13 +22,9 @@ void stringToNum(unordered_map<int, vector<string> > &corpus, unordered_map<int,
 // 宣告用來計算各個query word的IDF(Inverse Document Frequency)的副程式
 void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int, vector<int> > &numCorpus, map <int, vector< pair<int,pair<double, double> > > > &storeIDF);
 // 宣告計算每列query其有search到的corpus列其前3個IDF值最高的副程式
-void findTop3IDFword(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, double> > &storeTop3IDF);
-// 宣告算出各document的word數量的副程式
-void calculateTotalWord();
-// 宣告算出各document的new_tf(s)的副程式
-void calculateTF();
-// 宣告算出各document的rank(d, q)的副程式
-void calculateRank();
+void findTopKeyWords(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord); 
+// 呼叫計算每列query其有search到的corpus列的keyword的副程式
+void calculateRank(map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, map <int, map<int, double> > &result); 
 // 宣告用來sort storeSumIDF的副程式
 void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF);
 
@@ -47,12 +43,10 @@ int main(int argc, char *argv[]) {
 
     // 宣告用以儲存各個query word IDF的map
     map<int, vector< pair<int, pair<double, double> > > > storeIDF;
-    // 宣告用以儲存search到的corpus列其前3個IDF值最高的map
-    map <int, map<int, double> > storeTop3IDF;
-    // 宣告用以儲存各個query word sum of IDF的map
-    map<int, map<int, double> > storeSumIDF; 
-    // 宣告用來儲存sorted storeSumIDF的map
-    map<int, vector< pair<int, double > > > sortedSumIDF;
+    // 宣告用以儲存search到的corpus列的keywords並以降序排列的map
+    map <int, map<int, vector< pair<int, pair<double, double> > > > > storeKeyWord;
+    // 宣告用以儲存各個corpus列的rank(tf*idf)的map
+    map <int, map<int, double> > result;
 
     // ----------------- 以下為呼叫函式之用 -----------------
 
@@ -108,33 +102,13 @@ int main(int argc, char *argv[]) {
     // }
     // cout << endl;
 
+    // 呼叫計算每列query其有search到的corpus列的keyword的副程式
+    findTopKeyWords(numCorpus, storeIDF, storeKeyWord); 
+
     // 以下函式未定義
 
-    // 呼叫計算每列query其有search到的corpus列的keyword的副程式
-    findTop3IDFword(numCorpus, storeIDF, storeTop3IDF); 
-
-    // 呼叫算出各document的word數量
-    // calculateTotalWord();
-
-    // 呼叫算出各document的new_tf(s)
-    // calculateTF();
-
-    // 呼叫算出各document的rank(d, q)
-    // calculateRank();
-
-
-    // 呼叫用來sort storeSumIDF的副程式
-    // sortSumIDF(storeSumIDF, sortedSumIDF);
-    // A checkpoint for sortedSumIDF
-    // cout << "Sorted Sum of IDF:" << endl;
-    // for (const auto& kv : sortedSumIDF) {
-    //     cout << "Key: " << kv.first << ", Values: ";
-    //     for (const auto& pair : kv.second) {
-    //         cout << "(" << pair.first << ", " << pair.second << ") ";
-    //     }
-    //     cout << "\n";
-    // }
-    // cout << endl;
+    // 呼叫算出storeKeyWord的rank的副程式
+    calculateRank(storeKeyWord, result);
 
     // Print the result
     // cout << "Result:" << endl;

@@ -11,10 +11,9 @@ using namespace std;
 
 void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &keyWord); 
 
-void findTop3IDFword(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, double> > &storeTop3IDF) {
+void findTopKeyWords(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord) {
 
     map <int, vector< pair<int, pair<double, double> > > > keyWord;
-    map <int, map<int, vector< pair<int, pair<double, double> > > > > storeKeyWord;
 
     for (auto& key : storeIDF) {
         findKeyWord(key.second, numCorpus, keyWord);

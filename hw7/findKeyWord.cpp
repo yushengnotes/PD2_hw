@@ -33,7 +33,7 @@ void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map
             flag = false;
             i = 0;
         }
-        // 依據second double即new_tf*idf來排序
+        // 依據second double即new_tf*idf來排序(降序)
         sort(keyWords.begin(), keyWords.end(),
     [](const pair<int, pair<double, double>>& a, const pair<int, pair<double, double>>& b) {
             return a.second.second > b.second.second;
@@ -42,6 +42,7 @@ void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map
 
         keyWord.insert({key.first, keyWords});
         keyWords.clear();
+
     }
     
 }
