@@ -9,8 +9,11 @@
 #include <utility> // for using pairs
 using namespace std;
 
-void calculateRank(map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, map <int, map<int, double> > &result) {
+void calculateRank(unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, unordered_map <int, vector< pair<int, double> > > &result) {
+
     for (const auto& outer_key_pair : storeKeyWord) {
+        vector< pair<int, double> > inner_result;
+
         for (const auto& inner_key_pair : outer_key_pair.second) {
             double sum_second_double = 0;
             int counter = 0;
@@ -22,9 +25,19 @@ void calculateRank(map <int, map<int, vector< pair<int, pair<double, double> > >
                     break;
                 }
             }
-            // Store the summed values in 'result'
-            result[outer_key_pair.first][inner_key_pair.first] = sum_second_double;
+            // Store the summed values in 'inner_result'
+            inner_result.push_back({inner_key_pair.first, sum_second_double});
         }
+
+        result[outer_key_pair.first] = inner_result;
+    }
+
+    for(const auto& outer_pair : result){
+    cout << "Key: " << outer_pair.first << endl;
+    for(const auto& inner_pair : outer_pair.second){
+        cout << "(" << inner_pair.first << ", " << inner_pair.second << ") ";
+    }
+    cout << endl;
     }
 
 }

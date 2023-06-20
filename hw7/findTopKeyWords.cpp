@@ -11,7 +11,7 @@ using namespace std;
 
 void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &keyWord); 
 
-void findTopKeyWords(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord) {
+void findTopKeyWords(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord) {
 
     map <int, vector< pair<int, pair<double, double> > > > keyWord;
 
