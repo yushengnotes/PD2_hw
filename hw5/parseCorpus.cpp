@@ -46,6 +46,7 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '*'), word.end());
     word.erase(remove(word.begin(), word.end(), '`'), word.end());
     word.erase(remove(word.begin(), word.end(), '#'), word.end());
+    word.erase(remove(word.begin(), word.end(), '|'), word.end());
     word = replaceSubstring(word, "G⃗", "g");
     const string target = "®";
     size_t pos = string::npos;
@@ -125,6 +126,12 @@ string processWord(string word) {
     while((pos = word.find(target13)) != string::npos){
         // Remove the target string from the source string
         word.erase(pos, target13.length());
+    }
+    const string target14 = "√";
+    // Loop while we can still find the target string
+    while((pos = word.find(target14)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target14.length());
     }
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
     transform(word.begin(), word.end(), word.begin(), ::tolower);
