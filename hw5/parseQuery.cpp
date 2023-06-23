@@ -1,6 +1,4 @@
-/*  鄒雨笙 F64081070 程式設計二 第5次作業 2023/5/11
-
-    此副程式parseQuery用來讀取.txt檔案
+/*  鄒雨笙 F64081070 程式設計二 第6次作業 2023/5/29
 
 */
 
@@ -9,10 +7,12 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include <unordered_map>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-void parseQuery(char* &query, map<int, vector<string> > &q) { 
+void parseQuery(char* &query, unordered_map<int, vector<string> > &q) { 
     // 宣告一個ifstream型別的物件infile
     ifstream infile;
     // 開啟當前目錄下名為corpus的檔案
@@ -30,6 +30,7 @@ void parseQuery(char* &query, map<int, vector<string> > &q) {
         vector<string> fields;
         // 將每一行的單字取出
         while (getline(ss, field, ' ')) { 
+            transform(field.begin(), field.end(), field.begin(), ::tolower);
             fields.push_back(field);
         }
         q.insert({key, fields});
