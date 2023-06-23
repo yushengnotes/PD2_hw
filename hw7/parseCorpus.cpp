@@ -93,6 +93,12 @@ string processWord(string word) {
         // Remove the target string from the source string
         word.erase(pos, target8.length());
     }
+    const string target9 = "≤";
+    // Loop while we can still find the target string
+    while((pos = word.find(target9)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target9.length());
+    }
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
 
     transform(word.begin(), word.end(), word.begin(), ::tolower);
