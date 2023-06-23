@@ -64,43 +64,43 @@ int main(int argc, char *argv[]) {
     // 呼叫用來將string轉換成int的副程式
     stringToNum(query, numQuery);
     // A checkpoint for numCorpus
-    cout << "A checkpoint for numCorpus" << endl;
-    for (const auto& kv : numCorpus) {
-        cout << "Key: " << kv.first << "\nValues: ";
-        for (const auto& val : kv.second) {
-            std::cout << val << " ";
-        }
-        cout << "\n";
-    }
+    // cout << "A checkpoint for numCorpus" << endl;
+    // for (const auto& kv : numCorpus) {
+    //     cout << "Key: " << kv.first << "\nValues: ";
+    //     for (const auto& val : kv.second) {
+    //         std::cout << val << " ";
+    //     }
+    //     cout << "\n";
+    // }
     // // A checkpoint for numQuery
-    cout << "A checkpoint for numQuery" << endl;
-    for (const auto& kv : numQuery) {
-        cout << "Key: " << kv.first << "\nValues: ";
-        for (const auto& val : kv.second) {
-            std::cout << val << " ";
-        }
-        cout << "\n";
-    }
+    // cout << "A checkpoint for numQuery" << endl;
+    // for (const auto& kv : numQuery) {
+    //     cout << "Key: " << kv.first << "\nValues: ";
+    //     for (const auto& val : kv.second) {
+    //         std::cout << val << " ";
+    //     }
+    //     cout << "\n";
+    // }
 
     // 呼叫用來search corpus的副程式
     searchCorpus(numCorpus, numQuery, result);
 
     // A checkpoint for result
-    for(const auto& outerPair : result) {
-    std::cout << "Outer Key: " << outerPair.first << "\n";
-
-    for(const auto& innerPair : outerPair.second) {
-        std::cout << "  Inner Key: " << innerPair.first << ", Values: ";
-
-        for(const auto& val : innerPair.second) {
-            std::cout << val << " ";
-        }
-
-        std::cout << std::endl;
-    }
-
-    std::cout << std::endl;
-    }
+    // for(const auto& outerPair : result) {
+    // std::cout << "Outer Key: " << outerPair.first << "\n";
+    //
+    // for(const auto& innerPair : outerPair.second) {
+    //     std::cout << "  Inner Key: " << innerPair.first << ", Values: ";
+    //
+    //     for(const auto& val : innerPair.second) {
+    //         std::cout << val << " ";
+    //     }
+    //
+    //     std::cout << std::endl;
+    // }
+    //
+    // std::cout << std::endl;
+    // }
 
     // 呼叫用來整理results的副程式
     setResults(result, processedResult);

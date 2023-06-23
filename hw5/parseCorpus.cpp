@@ -29,6 +29,8 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '.'), word.end());
     word.erase(remove(word.begin(), word.end(), '['), word.end());
     word.erase(remove(word.begin(), word.end(), ']'), word.end());
+    word.erase(remove(word.begin(), word.end(), '{'), word.end());
+    word.erase(remove(word.begin(), word.end(), '}'), word.end());
     word.erase(remove(word.begin(), word.end(), '-'), word.end());
     word.erase(remove(word.begin(), word.end(), '+'), word.end());
     word.erase(remove(word.begin(), word.end(), '&'), word.end());
@@ -43,6 +45,7 @@ string processWord(string word) {
     word.erase(remove(word.begin(), word.end(), '"'), word.end());
     word.erase(remove(word.begin(), word.end(), '*'), word.end());
     word.erase(remove(word.begin(), word.end(), '`'), word.end());
+    word.erase(remove(word.begin(), word.end(), '#'), word.end());
     word = replaceSubstring(word, "G⃗", "g");
     const string target = "®";
     size_t pos = string::npos;
@@ -86,6 +89,42 @@ string processWord(string word) {
     while((pos = word.find(target7)) != string::npos){
         // Remove the target string from the source string
         word.erase(pos, target7.length());
+    }
+    const string target8 = "α";
+    // Loop while we can still find the target string
+    while((pos = word.find(target8)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target8.length());
+    }
+    const string target9 = "≤";
+    // Loop while we can still find the target string
+    while((pos = word.find(target9)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target9.length());
+    }
+    const string target10 = "θ";
+    // Loop while we can still find the target string
+    while((pos = word.find(target10)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target10.length());
+    }
+    const string target11 = "∂";
+    // Loop while we can still find the target string
+    while((pos = word.find(target11)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target11.length());
+    }
+    const string target12 = "−";
+    // Loop while we can still find the target string
+    while((pos = word.find(target12)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target12.length());
+    }
+    const string target13 = "";
+    // Loop while we can still find the target string
+    while((pos = word.find(target13)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target13.length());
     }
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
     transform(word.begin(), word.end(), word.begin(), ::tolower);
