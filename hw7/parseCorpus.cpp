@@ -12,9 +12,9 @@
 #include <algorithm>
 using namespace std;
 
-std::string replaceSubstring(std::string str, const std::string& from, const std::string& to) {
+string replaceSubstring(string str, const string& from, const string& to) {
     size_t startPos = 0;
-    while((startPos = str.find(from, startPos)) != std::string::npos) {
+    while((startPos = str.find(from, startPos)) != string::npos) {
         str.replace(startPos, from.length(), to);
         startPos += to.length(); // Handles case where 'to' is a substring of 'from'
     }
@@ -87,7 +87,14 @@ string processWord(string word) {
         // Remove the target string from the source string
         word.erase(pos, target7.length());
     }
+    const string target8 = "α";
+    // Loop while we can still find the target string
+    while((pos = word.find(target8)) != string::npos){
+        // Remove the target string from the source string
+        word.erase(pos, target8.length());
+    }
     word.erase(remove_if(word.begin(), word.end(), ::isdigit), word.end());
+
     transform(word.begin(), word.end(), word.begin(), ::tolower);
     return word;
 }

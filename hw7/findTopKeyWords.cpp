@@ -23,24 +23,24 @@ void findTopKeyWords(unordered_map<int, vector<int> > &numCorpus, map<int, vecto
 
     // Checkpoint for storeKeyWord
     // first double是idf、second double是new_tf*idf
-    for(const auto & outer_pair : storeKeyWord) {
-    int outer_key = outer_pair.first;
-    cout << "Outer Key: " << outer_key << endl;
-
-    for(const auto & inner_pair : outer_pair.second) {
-        int inner_key = inner_pair.first;
-        cout << "\tInner Key: " << inner_key << endl;
-
-        for(const auto & vector_element : inner_pair.second) {
-            int vector_key = vector_element.first;
-            cout << "\t\tVector Key: " << vector_key << endl;
-
-            double first_double = vector_element.second.first;
-            double second_double = vector_element.second.second;
-            cout << "\t\tFirst Double: " << first_double << ", Second Double: " << second_double << endl;
-        }
-    }
-    }
+    // for(const auto & outer_pair : storeKeyWord) {
+    // int outer_key = outer_pair.first;
+    // cout << "Outer Key: " << outer_key << endl;
+    //
+    // for(const auto & inner_pair : outer_pair.second) {
+    //     int inner_key = inner_pair.first;
+    //     cout << "\tInner Key: " << inner_key << endl;
+    //
+    //     for(const auto & vector_element : inner_pair.second) {
+    //         int vector_key = vector_element.first;
+    //         cout << "\t\tVector Key: " << vector_key << endl;
+    //
+    //         double first_double = vector_element.second.first;
+    //         double second_double = vector_element.second.second;
+    //         cout << "\t\tFirst Double: " << first_double << ", Second Double: " << second_double << endl;
+    //     }
+    // }
+    // }
 
 
 }

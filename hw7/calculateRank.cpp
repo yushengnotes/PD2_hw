@@ -47,13 +47,13 @@ void calculateRank(unordered_map <int, map<int, vector< pair<int, pair<double, d
     }
 
     // A checkpoint for result
-    for(const auto& outer_pair : result){
-    cout << "Key: " << outer_pair.first << endl;
-    for(const auto& inner_pair : outer_pair.second){
-        cout << "(" << inner_pair.first << ", " << inner_pair.second << ") ";
-    }
-    cout << endl;
-    }
+    // for(const auto& outer_pair : result){
+    // cout << "Key: " << outer_pair.first << endl;
+    // for(const auto& inner_pair : outer_pair.second){
+    //     cout << "(" << inner_pair.first << ", " << inner_pair.second << ") ";
+    // }
+    // cout << endl;
+    // }
 
 }
 

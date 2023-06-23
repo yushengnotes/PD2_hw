@@ -18,9 +18,12 @@ uint32_t convertToNum(const string &word, uint32_t seed = 0) {
 void stringToNum(unordered_map<int, vector<string> > &corpus, unordered_map<int, vector<int> > &numCorpus) {
     for (auto it = corpus.begin(); it != corpus.end(); ++it) {
         vector<int> numVec; 
+        int num;
         for (const auto& str : it->second) {
-            int num = convertToNum(str);
-            numVec.push_back(num); 
+            num = convertToNum(str);
+            if (num != 0) {
+                numVec.push_back(num); 
+            }
         }
         numCorpus[it->first] = numVec; 
     }

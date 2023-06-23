@@ -105,35 +105,33 @@ int main(int argc, char *argv[]) {
     // 呼叫計算每列query其有search到的corpus列的keyword的副程式
     findTopKeyWords(numCorpus, storeIDF, storeKeyWord); 
 
-    // 以下函式未定義
-
     // 呼叫算出storeKeyWord的rank的副程式
     calculateRank(storeKeyWord, result);
 
     // Print the result
     // cout << "Result:" << endl;
-    // int stopCount = stoi(argv[3]);
-    // for (const auto& kv : sortedSumIDF) {
-    //     int count = 0;
-    //     for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
-    //         if (count >= stopCount) break; // Stop printing after stopCount keys
-    //
+    int stopCount = stoi(argv[3]);
+    for (const auto& kv : result) {
+        int count = 0;
+        for (auto pair = kv.second.begin(); pair != kv.second.end(); ++pair) {
+            if (count >= stopCount) break; // Stop printing after stopCount keys
+
             // Print space only if it's not the first element
-            // if (count != 0) {
-            //     cout << " ";
-            // }
+            if (count != 0) {
+                cout << " ";
+            }
 
             // If the second value is 0, print -1 and skip the first value
-    //         if (pair->second == 0) {
-    //             cout << "-1";
-    //         } else {
-    //             cout << pair->first;
-    //         }
-    //
-    //         ++count;
-    //     }
-    //     cout << "\n";
-    // }
+            if (pair->second == 0) {
+                cout << "-1";
+            } else {
+                cout << pair->first;
+            }
+
+            ++count;
+        }
+        cout << "\n";
+    }
 
     return 0;
 }
