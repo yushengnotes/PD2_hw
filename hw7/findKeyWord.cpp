@@ -26,7 +26,7 @@ void findKeyWord(vector< pair<int, pair<double, double> > > &nums, unordered_map
                 }
             }
             tf = i / ((key.second).size()-1);
-            // cout << key.first << endl;
+            // cout << key.first << " " << tf << endl;
             // cout << (key.second).size()-1 << endl;
             num.second.second = num.second.first * tf;
             if (flag == true) {
