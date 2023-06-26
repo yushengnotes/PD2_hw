@@ -7,7 +7,7 @@ To be honest, I hadn't finished the hw3 really well so hw3 was unfinish and that
 
 ## The result of hw
 
-### hw6: A Simple Search Engine
+### hw6: A Simple Search Engine (Part I)
 
 To run the program in the server of the course lecturer to check if the result are identical to the answers provided. It totally took about 15 mins to run and check all testcases. 
 
@@ -20,3 +20,14 @@ To run the program in the server of the course lecturer to check if the result a
 
 
 ![3](https://github.com/yushengtzou/PD2_hw/assets/84191095/d87392db-0333-4374-9328-b90f29d40ef7)
+
+### hw7: A Simple Search Engine (Part II)
+
+To run the program in the server of the course lecturer to check if the result are identical to the answers provided. It totally took about 30 mins to run and check all testcases. 
+
+<br>
+
+<img width="1280" alt="1" src="https://github.com/yushengtzou/PD2_hw/assets/84191095/f120624c-4010-4a5a-a3ac-d007f925a4ca">
+
+<img width="1277" alt="2" src="https://github.com/yushengtzou/PD2_hw/assets/84191095/3e189def-a8fa-4ed2-88b3-0ddb71d3f447">
+
