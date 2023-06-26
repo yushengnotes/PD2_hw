@@ -10,7 +10,7 @@
 #include <algorithm>
 using namespace std;
 
-void calculateRank(unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, unordered_map <int, vector< pair<int, double> > > &result) {
+void calculateRank(unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, map <int, vector< pair<int, double> > > &result) {
 
     for (const auto& outer_key_pair : storeKeyWord) {
         vector< pair<int, double> > inner_result;

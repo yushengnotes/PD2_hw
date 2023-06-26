@@ -24,7 +24,7 @@ void calculateIDF(unordered_map<int, vector<int> > &numQuery, unordered_map<int,
 // 宣告計算每列query其有search到的corpus列其前3個IDF值最高的副程式
 void findTopKeyWords(unordered_map<int, vector<int> > &numCorpus, map<int, vector< pair<int, pair<double, double> > > > &storeIDF, unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord); 
 // 呼叫計算每列query其有search到的corpus列的keyword的副程式
-void calculateRank(unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, unordered_map <int, vector< pair<int, double> > > &result); 
+void calculateRank(unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > &storeKeyWord, map <int, vector< pair<int, double> > > &result); 
 // 宣告用來sort storeSumIDF的副程式
 void sortSumIDF(map<int, map<int, double> > &storeSumIDF, map<int, vector< pair<int, double > > > &sortedSumIDF);
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     // 宣告用以儲存search到的corpus列的keywords並以降序排列的map
     unordered_map <int, map<int, vector< pair<int, pair<double, double> > > > > storeKeyWord;
     // 宣告用以儲存各個corpus列的rank(tf*idf)的map
-    unordered_map <int, vector< pair<int, double> > > result;
+    map <int, vector< pair<int, double> > > result;
 
     // ----------------- 以下為呼叫函式之用 -----------------
 
